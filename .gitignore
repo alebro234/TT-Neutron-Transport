@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# LaTeX build files (the .tex, .bib and .pdf are tracked)
+notes/*.aux
+notes/*.bbl
+notes/*.blg
+notes/*.fdb_latexmk
+notes/*.fls
+notes/*.log
+notes/*.out
+notes/*.toc
+notes/*.synctex.gz
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
