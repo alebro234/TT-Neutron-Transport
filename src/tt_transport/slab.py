@@ -11,9 +11,11 @@ from numpy.polynomial.legendre import leggauss
 
 
 def matrix_kron(cores_list):
+    """Create a rank-1 TT-matrix from a list of 2D arrays (one core each)."""
     return tntt.TT([tn.Tensor(tn.tensor(np.expand_dims(c,[0,3]))) for c in cores_list],[1]*len(cores_list))
         
 def vector_kron(cores_list):
+    """Create a rank-1 TT-tensor from a list of 1D arrays (one core each)."""
     return tntt.TT([tn.Tensor(tn.tensor(np.expand_dims(c,[0,2]))) for c in cores_list],[1]*len(cores_list))
 
 def concat_cores(blocks):
@@ -292,17 +294,6 @@ def legendre_to_physical_space(Gc, p, Ns, xi):
     Gc = Gc.reshape(r0, Ns, p + 1, r1)
     return tn.einsum('iNaj,ra->iNrj', Gc, P).reshape(r0, Ns * len(xi), r1)
 
-
-def concat_cores(blocks):
-    """Kronecker product of TT-matrix blocks: 2D arrays (one core each) and tntt.TT objects (their cores)."""
-    cores = []
-    for b in blocks:
-        if isinstance(b, tntt.TT):
-            cores += list(b.cores)
-        else:
-            cores.append(tn.tensor(np.asarray(b, dtype=np.float64)[None, :, :, None],
-                                   dtype=tn.get_default_dtype()))
-    return tntt.TT(cores)
 
 
 # modal Legendre coefficients -> point values at the Gauss points xi of every cell
