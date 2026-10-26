@@ -1,0 +1,287 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\graphicspath{{images/}}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+\newcommand{\Om}{\hat{\Omega}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\kron}{\otimes}
+\newcommand{\Lmax}{\Lambda}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\pp}{{\bm{p}^{+}}}
+\newcommand{\pmn}{{\bm{p}^{-}}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{TT-Neutron-Transport\\[2pt]\large Theory and documentation of \texttt{BoxTransport}}
+\date{2026-10-21}
+
+\begin{document}
+\maketitle
+\sloppy
+\tableofcontents
+
+%==========================================================================================
+\section{Theory}
+\label{sec:theory}
+%==========================================================================================
+
+\subsection{Problem statement}
+\label{sec:problem}
+
+Box $D=[0,L_x]\times[0,L_y]\times[0,L_z]$, $\bm r=(x,y,z)$, full angular dependence $\Om=\Om(\mu,\varphi)$, energy groups $g=1,\dots,G$ ($g=1$ the fastest), time $t\in(0,T]$. The direction cosines are
+\begin{equation}
+\Om=(\Omega_x,\Omega_y,\Omega_z)=\big(\eta\cos\varphi,\ \eta\sin\varphi,\ \mu\big),\qquad \eta=\sqrt{1-\mu^2},
+\label{eq:cosines}
+\end{equation}
+with $\mu=\Om\cdot\hat z$ the polar cosine, as in the slab. The multigroup transport equation for the angular flux $\psi_g(\bm r,\Om,t)$ is
+\begin{equation}
+\Big(\frac{1}{v_g}\partial_t+\Om\cdot\nabla+\sigma_{t,g}(\bm r)\Big)\psi_g
+=\sum_{g'=1}^{G}\int_{4\pi}\sigma_{s,g'\to g}(\bm r,\Om\cdot\Om')\,\psi_{g'}(\bm r,\Om',t)\,\dd\Om'+Q_g(\bm r,\Om,t),
+\label{eq:transport}
+\end{equation}
+$\Om\cdot\nabla=\Omega_x\partial_x+\Omega_y\partial_y+\Omega_z\partial_z$. On each of the six faces the flux is prescribed on the incoming half range, $\hat n\cdot\Om<0$ with $\hat n$ the outward normal:
+\begin{equation}
+\begin{aligned}
+\psi_g(0,y,z,\Om,t)&=\psi^{\mathrm L_x}_g(y,z,\Om,t)\ \ (\Omega_x>0), &
+\psi_g(L_x,y,z,\Om,t)&=\psi^{\mathrm R_x}_g(y,z,\Om,t)\ \ (\Omega_x<0),\\
+\psi_g(x,0,z,\Om,t)&=\psi^{\mathrm L_y}_g(x,z,\Om,t)\ \ (\Omega_y>0), &
+\psi_g(x,L_y,z,\Om,t)&=\psi^{\mathrm R_y}_g(x,z,\Om,t)\ \ (\Omega_y<0),\\
+\psi_g(x,y,0,\Om,t)&=\psi^{\mathrm L_z}_g(x,y,\Om,t)\ \ (\Omega_z>0), &
+\psi_g(x,y,L_z,\Om,t)&=\psi^{\mathrm R_z}_g(x,y,\Om,t)\ \ (\Omega_z<0),
+\end{aligned}
+\label{eq:bc}
+\end{equation}
+and $\psi_g(\bm r,\Om,0)=\psi^0_g(\bm r,\Om)$. The steady-state problem drops $\partial_t$ and the initial condition. The slab is the special case of data independent of $x$ and $y$ ($\Omega_x,\Omega_y$ then never act).
+
+\paragraph{Materials.} The box is made of $C$ materials with constant data $\sigma^c_{t,g}$, $\sigma^{c}_{s,g'\to g}$ and a piecewise constant material map $c(\bm r)$:
+\begin{equation}
+\sigma_{t,g}(\bm r)=\sum_{c=1}^{C}\mathbf{1}_c(\bm r)\,\sigma^c_{t,g},\qquad
+\sigma_{s,g'\to g}(\bm r,\cdot)=\sum_{c=1}^{C}\mathbf{1}_c(\bm r)\,\sigma^c_{s,g'\to g}(\cdot).
+\label{eq:materials}
+\end{equation}
+
+\paragraph{Scattering kernel.} Unchanged from the slab: each material's kernel is expanded in Legendre polynomials up to $\Lmax$, and the addition theorem is used with the real orthonormal spherical harmonics $Y_{lm}(\Om)=A_{lm}(\mu)\Pi_m(\varphi)$,
+\begin{gather}
+\sigma^c_{s,g'\to g}(\mu_0)=\sum_{l=0}^{\Lmax}\frac{2l+1}{4\pi}\,\sigma^{l,c}_{s,g'\to g}P_l(\mu_0)
+=\sum_{l=0}^{\Lmax}\sigma^{l,c}_{s,g'\to g}\sum_{m=-l}^{l}Y_{lm}(\Om)Y_{lm}(\Om'),\qquad \mu_0=\Om\cdot\Om',
+\label{eq:kernel}\\
+A_{lm}(\mu)=\sqrt{\tfrac{2l+1}{4\pi}\tfrac{(l-|m|)!}{(l+|m|)!}}\,P_l^{|m|}(\mu),\qquad
+\Pi_m(\varphi)=\begin{cases}\sqrt2\cos(m\varphi)&m>0\\1&m=0\\\sqrt2\sin(|m|\varphi)&m<0\end{cases}
+\end{gather}
+with moments $\sigma^{l,c}_{s,g'\to g}=2\pi\int_{-1}^1\sigma^c_{s,g'\to g}(\mu_0)P_l(\mu_0)\,\dd\mu_0$ (OpenMC convention, no $(2l+1)$) and group matrices $\Sigma^{l,c}=[\sigma^{l,c}_{s,g'\to g}]_{gg'}$ (row $g$ receiving).
+
+\paragraph{No azimuthal symmetry.} In the slab, $\varphi$-independent data gave a $\varphi$-independent flux and only $m=0$ survived. In the box $\Omega_x$ and $\Omega_y$ depend on $\varphi$, so the flux depends on $\varphi$ even for isotropic data, and all $m$ of \eqref{eq:kernel} act.
+
+%------------------------------------------------------------------------------------------
+\subsection{Phase-space discretization}
+\label{sec:discretization}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+index & range & meaning\\
+\midrule
+$i_d$ & $1,\dots,N_d$ & cell along $d\in\{x,y,z\}$, $K^d_{i_d}=[d_{i_d}-\tfrac{\Delta d_{i_d}}2,\,d_{i_d}+\tfrac{\Delta d_{i_d}}2]$\\
+$a_d,b_d$ & $0,\dots,p$ & Legendre mode along $d$; $s_d=(i_d,a_d)$, $N_{s_d}=N_d(p+1)$, mode index fastest\\
+$n$ & $1,\dots,N_\mu$ & polar ordinate $\mu_n$\\
+$q$ & $1,\dots,N_\varphi$ & azimuthal ordinate $\varphi_q$\\
+$g$ & $1,\dots,G$ & energy group\\
+$k$ & $1,\dots,N_t$ & time step, $t_k=k\Delta t$, $\Delta t=T/N_t$\\
+$l,m$ & $0,\dots,\Lmax$; $-l,\dots,l$ & spherical-harmonic order of the kernel\\
+$c$ & $1,\dots,C$ & material\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Angle: discrete ordinates.} Same product quadrature as the slab, $\Om_{nq}=\Om(\mu_n,\varphi_q)$: $(\mu_n,w_n)$ the $N_\mu$-point Gauss--Legendre rule (even $N_\mu$), $\varphi_q$ equispaced with $w_q=2\pi/N_\varphi$; it integrates $Y_{lm}Y_{l'm'}$, $l,l'\le\Lmax$, exactly if $N_\mu\ge\Lmax+1$ and $N_\varphi\ge2\Lmax+1$. $N_\varphi=1$ is no longer allowed. On the grids the direction cosines are the diagonal matrices
+\begin{equation}
+D_\mu=\diag(\mu_n),\qquad D_\eta=\diag\big(\sqrt{1-\mu_n^2}\big),\qquad
+D_{\cos}=\diag(\cos\varphi_q),\qquad D_{\sin}=\diag(\sin\varphi_q),
+\end{equation}
+so that $\Omega_x\leftrightarrow D_\eta\kron D_{\cos}$, $\Omega_y\leftrightarrow D_\eta\kron D_{\sin}$, $\Omega_z\leftrightarrow D_\mu\kron I$: every direction cosine is rank one across the $\mu|\varphi$ cut. Since $\eta_n>0$, the upwind split also factorizes,
+\begin{equation}
+\Omega_x^\pm\leftrightarrow D_\eta\kron D^\pm_{\cos},\qquad \Omega_y^\pm\leftrightarrow D_\eta\kron D^\pm_{\sin},\qquad \Omega_z^\pm\leftrightarrow D^\pm_\mu\kron I,
+\label{eq:upwind-split}
+\end{equation}
+with $(\cdot)^\pm=\max/\min(\cdot,0)$ applied entrywise, $D^+ + D^-=D$. The discrete kernel $K_l$ is \eqref{eq:Kl} of the slab, now with all $m$:
+\begin{equation}
+(K_l)_{(nq),(n'q')}=\sum_{m=-l}^{l}\big(\bm a_{lm}\bm a_{lm}^{\!\top}W_\mu\big)\kron\big(\bm\pi_m\bm\pi_m^{\!\top}W_\varphi\big),
+\label{eq:Kl}
+\end{equation}
+$\bm a_{lm}=(A_{lm}(\mu_n))_n$, $\bm\pi_m=(\Pi_m(\varphi_q))_q$, $W_\mu=\diag(w_n)$, $W_\varphi=\diag(w_q)$. Since $A_{l,-m}=A_{lm}$ and $\bm\pi_m\bm\pi_m^{\!\top}+\bm\pi_{-m}\bm\pi_{-m}^{\!\top}=2\big[\cos m(\varphi_q-\varphi_{q'})\big]_{qq'}$, the $\pm m$ terms merge and $K_l$ has $\mu|\varphi$ rank $l+1$.
+
+\paragraph{Space: tensor-product upwind DG.} Upwind DG~\cite{ReedHill} in each direction. Each cell $K_{i_xi_yi_z}=K^x_{i_x}\times K^y_{i_y}\times K^z_{i_z}$ has volume $\Delta x_{i_x}\Delta y_{i_y}\Delta z_{i_z}$ and reference coordinates $\xi_d\in[-1,1]$, $d=d_{i_d}+\frac{\Delta d_{i_d}}2\xi_d$. On it, for each ordinate, group and time step, the flux is expanded in the tensor-product ($Q_p$) Legendre basis,
+\begin{equation}
+\psi_g(\bm r,\Om_{nq},t_k)\big|_{K_{i_xi_yi_z}}\approx\sum_{a_x,a_y,a_z=0}^{p}\Psi\big((i_x,a_x),(i_y,a_y),(i_z,a_z),n,q,g,k\big)\,P_{a_x}(\xi_x)P_{a_y}(\xi_y)P_{a_z}(\xi_z),
+\end{equation}
+$(p+1)^3$ modes per cell and $N_xN_yN_z(p+1)^3$ spatial unknowns per $(n,q,g,k)$. Testing with $P_{a_x}P_{a_y}P_{a_z}$ separates: every volume integral is a product of three 1D integrals, so every spatial operator is a Kronecker product of 1D DG matrices. With the reference matrices of the slab,
+\begin{gather}
+\hat M=\diag\Big(\frac{1}{2a+1}\Big),\qquad
+S_{ab}=\int_{-1}^1P_bP_a'\,\dd\xi,\qquad \pp=\bm 1,\qquad \pmn=((-1)^a)_a,
+\end{gather}
+define for each direction $d\in\{x,y,z\}$, with $E^\mp_d$ the lower/upper shift on $N_d$ cells,
+\begin{gather}
+M_d=\diag(\Delta d_1,\dots,\Delta d_{N_d})\kron\hat M,\qquad \mathsf S_d=I_{N_d}\kron S,\\
+U_d^+=I_{N_d}\kron\pp\pp^{\!\top}-E^-_d\kron\pmn\pp^{\!\top},\qquad
+U_d^-=E^+_d\kron\pp\pmn^{\!\top}-I_{N_d}\kron\pmn\pmn^{\!\top},\qquad
+G^\pm_d=U^\pm_d-\mathsf S_d .
+\end{gather}
+Only $M_d$ carries the cell size: in $\int_K\Omega_z\partial_z\psi\,v$ the $\Delta z/2$ of $\dd z$ cancels the $2/\Delta z$ of $\partial_z$, while the $x$ and $y$ integrals leave $M_x\kron M_y$. For uniform cells $M_d=I_{N_d}\kron(\Delta d\,\hat M)$, the slab's $I\kron M_h$. Integrating by parts in $d$ with upwind traces (\cref{eq:upwind-split}) gives the 1D slab operator along $d$ with the mass in the two transverse directions:
+\begin{gather}
+\Omega_x\partial_x\psi\leftrightarrow\sum_\pm G^\pm_x\kron M_y\kron M_z\kron D_\eta\kron D^\pm_{\cos},\qquad
+\Omega_y\partial_y\psi\leftrightarrow\sum_\pm M_x\kron G^\pm_y\kron M_z\kron D_\eta\kron D^\pm_{\sin},\notag\\
+\Omega_z\partial_z\psi\leftrightarrow\sum_\pm M_x\kron M_y\kron G^\pm_z\kron D^\pm_\mu\kron I,
+\label{eq:streaming}
+\end{gather}
+where $\sum_\pm G^\pm\kron D^\pm=-\mathsf S\kron D+U^+\kron D^++U^-\kron D^-$ because $D=D^++D^-$. On the boundary cells the missing neighbour is the face inflow, which moves to the right-hand side (\cref{sec:operator}). Sources, initial and inflow data enter as load vectors $(\bm f_d)_{(i_d,a)}=\int_{K^d_{i_d}}f(d)P_a\,\dd d$ ($=M_d$ times their Legendre coefficients).
+
+\paragraph{Material masks.} Material interfaces lie on cell faces, so each cell has one material. The one-hot map is now a 3D tensor, $\chi_c(i_x,i_y,i_z)=1$ if $K_{i_xi_yi_z}\subset c$, and the masked mass matrix is
+\begin{equation}
+M_c=\diag\big(\chi_c\kron\bm 1_{(p+1)^3}\big)\,(M_x\kron M_y\kron M_z),\qquad \sum_{c=1}^CM_c=M_x\kron M_y\kron M_z=:\mathsf M,
+\label{eq:Mc}
+\end{equation}
+(mode indices interleaved with their cell index in each direction). $M_c$ is a Kronecker product only if $\chi_c$ is: if $\chi_c=\sum_{r=1}^{R}\bm u_r\kron\bm v_r\kron\bm w_r$, then $M_c=\sum_r\diag(\bm u_r\odot\bm\Delta x)\hat M\kron\diag(\bm v_r\odot\bm\Delta y)\hat M\kron\diag(\bm w_r\odot\bm\Delta z)\hat M$ (with $\diag(\cdot)\hat M$ short for $\diag(\cdot)\kron\hat M$), and in TT format $M_c$ inherits the TT ranks of $\chi_c$. An axis-aligned box has rank one, its complement rank two, a union of $R$ disjoint boxes rank $\le R$. A homogeneous box is $C=1$, $M_1=\mathsf M$.
+
+\paragraph{Time: backward Euler, all at once.} As in the slab: all $N_t$ steps are unknowns of one system, the coupling to the previous step is $D_t=\Delta t^{-1}(I-E^-)$ over $k$, and $\bm\psi^0$ moves to the right-hand side at $k=1$. In steady state $N_t=1$ and the time term is absent.
+
+%------------------------------------------------------------------------------------------
+\subsection{TT operator}
+\label{sec:operator}
+
+The unknown is a 7-dimensional tensor of DG modal coefficients $\Psi(s_x,s_y,s_z,n,q,g,k)$, stored as a TT with cores in the order $(x,y,z,\mu,\varphi,g,t)$, of size $N_xN_yN_z(p+1)^3N_\mu N_\varphi GN_t$ in full format. With $V=\diag(v_g)$, $\Sigma^c_t=\diag(\sigma^c_{t,g})$:
+\begin{equation}
+\boxed{
+\begin{aligned}
+\mathcal A={}&\sum_{c=1}^{C}M_c\kron I\kron I\kron\Sigma^c_t\kron I &&\text{collision}\\
+&+\mathsf M\kron I\kron I\kron V^{-1}\kron D_t &&\text{time derivative}\\
+&+\sum_\pm G^\pm_x\kron M_y\kron M_z\kron D_\eta\kron D^\pm_{\cos}\kron I\kron I &&\text{streaming }x\\
+&+\sum_\pm M_x\kron G^\pm_y\kron M_z\kron D_\eta\kron D^\pm_{\sin}\kron I\kron I &&\text{streaming }y\\
+&+\sum_\pm M_x\kron M_y\kron G^\pm_z\kron D^\pm_\mu\kron I\kron I\kron I &&\text{streaming }z\\
+&-\sum_{c=1}^{C}\sum_{l=0}^{\Lmax}M_c\kron K_l\kron\Sigma^{l,c}\kron I &&\text{scattering}
+\end{aligned}}
+\label{eq:A}
+\end{equation}
+where $M_c$ occupies the three space slots and $K_l$ \eqref{eq:Kl} the two angular slots. The discrete system is $\mathcal A\Psi=F$,
+\begin{equation}
+F=F_Q+F_0+\sum_{d\in\{x,y,z\}}\big(F_{\mathrm L_d}+F_{\mathrm R_d}\big),
+\end{equation}
+with, for separable data (subscripts = factors on the grids, space factors as load vectors),
+\begin{equation}
+\begin{aligned}
+F_Q&=\bm Q_x\kron\bm Q_y\kron\bm Q_z\kron\bm Q_\mu\kron\bm Q_\varphi\kron\bm Q_E\kron\bm Q_t,\\
+F_0&=\Delta t^{-1}\,\bm\Psi^0_x\kron\bm\Psi^0_y\kron\bm\Psi^0_z\kron\bm\Psi^0_\mu\kron\bm\Psi^0_\varphi\kron V^{-1}\bm\Psi^0_E\kron\bm e_1,
+\end{aligned}
+\label{eq:F-vol}
+\end{equation}
+and one pair of inflow terms per direction. The face integral of $\Omega_d\psi^{\mathrm{in}}v$ evaluates the test function on the face ($\pmn$ at $\xi_d=-1$, $\pp$ at $\xi_d=+1$) and integrates it against the data in the two transverse directions (load vectors on the face):
+\begin{equation}
+\begin{aligned}
+F_{\mathrm L_x}&=(\bm e_1\kron\pmn)\kron\bm b^{\mathrm L_x}_y\kron\bm b^{\mathrm L_x}_z\kron D_\eta\bm b^{\mathrm L_x}_\mu\kron D^+_{\cos}\bm b^{\mathrm L_x}_\varphi\kron\bm b^{\mathrm L_x}_E\kron\bm b^{\mathrm L_x}_t,\\
+F_{\mathrm R_x}&=(\bm e_{N_x}\kron\pp)\kron\bm b^{\mathrm R_x}_y\kron\bm b^{\mathrm R_x}_z\kron D_\eta\bm b^{\mathrm R_x}_\mu\kron(-D^-_{\cos})\bm b^{\mathrm R_x}_\varphi\kron\bm b^{\mathrm R_x}_E\kron\bm b^{\mathrm R_x}_t,\\
+F_{\mathrm L_y}&=\bm b^{\mathrm L_y}_x\kron(\bm e_1\kron\pmn)\kron\bm b^{\mathrm L_y}_z\kron D_\eta\bm b^{\mathrm L_y}_\mu\kron D^+_{\sin}\bm b^{\mathrm L_y}_\varphi\kron\bm b^{\mathrm L_y}_E\kron\bm b^{\mathrm L_y}_t,\\
+F_{\mathrm R_y}&=\bm b^{\mathrm R_y}_x\kron(\bm e_{N_y}\kron\pp)\kron\bm b^{\mathrm R_y}_z\kron D_\eta\bm b^{\mathrm R_y}_\mu\kron(-D^-_{\sin})\bm b^{\mathrm R_y}_\varphi\kron\bm b^{\mathrm R_y}_E\kron\bm b^{\mathrm R_y}_t,\\
+F_{\mathrm L_z}&=\bm b^{\mathrm L_z}_x\kron\bm b^{\mathrm L_z}_y\kron(\bm e_1\kron\pmn)\kron D^+_\mu\bm b^{\mathrm L_z}_\mu\kron\bm b^{\mathrm L_z}_\varphi\kron\bm b^{\mathrm L_z}_E\kron\bm b^{\mathrm L_z}_t,\\
+F_{\mathrm R_z}&=\bm b^{\mathrm R_z}_x\kron\bm b^{\mathrm R_z}_y\kron(\bm e_{N_z}\kron\pp)\kron(-D^-_\mu)\bm b^{\mathrm R_z}_\mu\kron\bm b^{\mathrm R_z}_\varphi\kron\bm b^{\mathrm R_z}_E\kron\bm b^{\mathrm R_z}_t .
+\end{aligned}
+\label{eq:F-bc}
+\end{equation}
+The $D^\pm$ factors select the incoming half range of each face, and $-D^-\ge0$ on the right faces (the neighbour term $+\Omega^-_d\,\pp\psi^{\mathrm R_d}$ of $U^-_d$ moves to the right-hand side with a minus). Sums of separable terms are sums of such vectors. The system is solved with AMEn. Point values follow by contracting each space core with $P_a(\xi_r)$ at $N_{\mathrm{rec}}$ Gauss points per cell, the scalar flux $\phi_g=\sum_{nq}w_nw_q\psi_g(\Om_{nq})$ by contracting the angular cores with their weights.
+
+\paragraph{Ranks of $\mathcal A$ (homogeneous box).} For $C=1$, grouping each streaming term by its sign as in \eqref{eq:A}, the space factors left of each cut are
+$\{M_x,G^\pm_x\}$, then $\{M_x\kron M_y,\ G^\pm_x\kron M_y,\ M_x\kron G^\pm_y\}$, then these times $M_z$ plus $M_x\kron M_y\kron G^\pm_z$, and everything multiplying $\mathsf M$ (collision, time, scattering) shares one term. Right of the $\mu|\varphi$ cut the factors are $I\kron(\Sigma_t\kron I+V^{-1}\kron D_t)$, $I\kron I\kron I$ ($z$ streaming), $D^\pm_{\cos}\kron I\kron I$, $D^\pm_{\sin}\kron I\kron I$ and one $\big(\bm\pi\bm\pi^{\!\top}W_\varphi\big)_{|m|}\kron\Sigma^{l}\kron I$ per pair $(l,|m|)$, $r_K=(\Lmax+1)(\Lmax+2)/2$ of them; right of $\varphi|g$ they are $\Sigma_t\kron I+V^{-1}\kron D_t$, $I\kron I$ (all streaming) and $\Sigma^l\kron I$, $l=0,\dots,\Lmax$. Hence
+\begin{equation}
+r_{x|y}\le3,\quad r_{y|z}\le5,\quad r_{z|\mu}\le7,\quad r_{\mu|\varphi}\le r_K+6,\quad r_{\varphi|g}\le\Lmax+3,\quad r_{g|t}\le2\ (1\text{ steady}).
+\end{equation}
+With $C>1$ the masks \eqref{eq:Mc} add the TT ranks of the $\chi_c$ in the space cores, and the material index is carried to the energy core as in the slab.
+
+\paragraph{Inner product.} With $\Psi$ in modal coefficients and $F$ in load vectors, the Euclidean product over $(s_x,s_y,s_z)$ is the exact volume integral,
+\begin{equation}
+\langle\psi,f\rangle\approx w_t\,\Psi\cdot(WF),\qquad W=I\kron I\kron I\kron W_\mu\kron W_\varphi\kron I\kron I,\qquad w_t=\Delta t\ (1\text{ steady}).
+\label{eq:inner}
+\end{equation}
+
+%==========================================================================================
+\section{Manufactured solution}
+\label{sec:mms}
+%==========================================================================================
+
+\paragraph{Solution.} The slab solution with one factor per space direction: for group amplitudes $\alpha_g$,
+\begin{gather}
+\psi_g(\bm r,\Om,t)=\alpha_g\,f_x(x)f_y(y)f_z(z)\,Y(\Om)\,e^{-t/\tau},\qquad
+f_d(d)=a_d\sin\frac{\pi d}{L_d}+c_d\cos\frac{\pi d}{L_d},\quad d\in\{x,y,z\},
+\label{eq:mms}\\
+Y=b_0Y_{00}+b_1Y_{11}+b_2Y_{2,-1}.\notag
+\end{gather}
+Since $f_d(0)=c_d$ and $f_d(L_d)=-c_d$, every face carries a nonzero inflow if all $c_d\ne0$; $a_d\ne c_d$ and different values per direction keep the three directions distinguishable. With $\eta=\sqrt{1-\mu^2}$ and the Condon--Shortley phase of $P_l^{|m|}$ (as in \code{scipy.special.lpmv}, used by the code),
+\begin{equation}
+Y_{00}=\frac{1}{\sqrt{4\pi}},\qquad
+Y_{11}=-\sqrt{\frac{3}{4\pi}}\,\eta\cos\varphi=-\sqrt{\frac{3}{4\pi}}\,\Omega_x,\qquad
+Y_{2,-1}=-\sqrt{\frac{15}{4\pi}}\,\mu\eta\sin\varphi=-\sqrt{\frac{15}{4\pi}}\,\Omega_y\Omega_z .
+\label{eq:mms-Y}
+\end{equation}
+Each $Y_{lm}$ is one product $A(\mu)\Pi(\varphi)$, so $\psi$ is rank one on every bond except $\mu|\varphi$ (rank three).
+
+\paragraph{Source.} By \eqref{eq:kernel} and the orthonormality of the $Y_{lm}$, the scattering operator maps $\alpha_gY_{lm}\mapsto(\Sigma^l\bm\alpha)_gY_{lm}$, with $(\Sigma^l\bm\alpha)_g=\sum_{g'}\sigma^l_{s,g'\to g}\alpha_{g'}$ and $\Sigma^l=0$ for $l>\Lmax$. Substituting \eqref{eq:mms} into \eqref{eq:transport}, with $\frac1{v_g}\partial_t\psi_g=-\frac{1}{\tau v_g}\psi_g$ and $\Om\cdot\nabla$ acting on one factor at a time,
+\begin{equation}
+\boxed{
+\begin{aligned}
+Q_g(\bm r,\Om,t)=e^{-t/\tau}\sum_{(l,m,b)}b\,\Big\{&\Big[\Big(\sigma_{t,g}-\frac{1}{\tau v_g}\Big)\alpha_g-(\Sigma^l\bm\alpha)_g\Big]f_xf_yf_z\,Y_{lm}\\
+&+\alpha_g\Big[f_x'f_yf_z\,\Omega_xY_{lm}+f_xf_y'f_z\,\Omega_yY_{lm}+f_xf_yf_z'\,\Omega_zY_{lm}\Big]\Big\},
+\end{aligned}}
+\label{eq:mms-Q}
+\end{equation}
+summed over the three modes $(l,m,b)\in\{(0,0,b_0),(1,1,b_1),(2,-1,b_2)\}$, with
+\begin{equation}
+f_d'(d)=\frac{\pi}{L_d}\Big(a_d\cos\frac{\pi d}{L_d}-c_d\sin\frac{\pi d}{L_d}\Big).
+\end{equation}
+\Cref{eq:mms-Q} is a sum of $3\times4=12$ rank-one terms over $(x,y,z,\mu,\varphi,g,t)$: one reaction term and three streaming terms per mode. Their angular factors, $\Omega_dY_{lm}=A(\mu)\Pi(\varphi)$ written out:
+\begin{center}\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+mode & $Y_{lm}$ & $\Omega_xY_{lm}$ & $\Omega_yY_{lm}$ & $\Omega_zY_{lm}$\\
+\midrule
+$Y_{00}$ & $\frac{1}{\sqrt{4\pi}}\cdot1$ & $\frac{\eta}{\sqrt{4\pi}}\cdot\cos\varphi$ & $\frac{\eta}{\sqrt{4\pi}}\cdot\sin\varphi$ & $\frac{\mu}{\sqrt{4\pi}}\cdot1$\\
+$Y_{11}$ & $-\sqrt{\frac{3}{4\pi}}\,\eta\cdot\cos\varphi$ & $-\sqrt{\frac{3}{4\pi}}\,\eta^2\cdot\cos^2\varphi$ & $-\sqrt{\frac{3}{4\pi}}\,\eta^2\cdot\sin\varphi\cos\varphi$ & $-\sqrt{\frac{3}{4\pi}}\,\mu\eta\cdot\cos\varphi$\\
+$Y_{2,-1}$ & $-\sqrt{\frac{15}{4\pi}}\,\mu\eta\cdot\sin\varphi$ & $-\sqrt{\frac{15}{4\pi}}\,\mu\eta^2\cdot\sin\varphi\cos\varphi$ & $-\sqrt{\frac{15}{4\pi}}\,\mu\eta^2\cdot\sin^2\varphi$ & $-\sqrt{\frac{15}{4\pi}}\,\mu^2\eta\cdot\sin\varphi$\\
+\bottomrule
+\end{tabular}
+\end{center}
+(first factor $\to$ $\mu$ core, second $\to$ $\varphi$ core). The energy cores are $\big((\Sigma_t-\tau^{-1}V^{-1})\bm\alpha-\Sigma^l\bm\alpha\big)$ for the reaction terms and $\bm\alpha$ for the streaming terms, the time core $e^{-t_k/\tau}$ for all.
+
+\paragraph{Initial and inflow data.} Restrictions of \eqref{eq:mms}:
+\begin{equation}
+\begin{aligned}
+\psi^0_g&=\alpha_gf_xf_yf_z\,Y,\\
+\psi^{\mathrm L_x}_g&=c_x\,\alpha_gf_yf_z\,Ye^{-t/\tau}\ (\Omega_x>0), &
+\psi^{\mathrm R_x}_g&=-c_x\,\alpha_gf_yf_z\,Ye^{-t/\tau}\ (\Omega_x<0),\\
+\psi^{\mathrm L_y}_g&=c_y\,\alpha_gf_xf_z\,Ye^{-t/\tau}\ (\Omega_y>0), &
+\psi^{\mathrm R_y}_g&=-c_y\,\alpha_gf_xf_z\,Ye^{-t/\tau}\ (\Omega_y<0),\\
+\psi^{\mathrm L_z}_g&=c_z\,\alpha_gf_xf_y\,Ye^{-t/\tau}\ (\Omega_z>0), &
+\psi^{\mathrm R_z}_g&=-c_z\,\alpha_gf_xf_y\,Ye^{-t/\tau}\ (\Omega_z<0).
+\end{aligned}
+\end{equation}
+Each is a sum of three rank-one terms (one per mode of $Y$), the transverse factors entering \eqref{eq:F-bc} as load vectors. $F$ is therefore a short sum of rank-one TTs: $12$ (source) $+\,3$ (initial condition) $+\,6\times3$ (faces).
+
+\paragraph{Discrete exactness.} The identity $K_lY_{l'm'}=\delta_{ll'}Y_{l'm'}$ on the ordinates (for $l\le\Lmax$, $l'\le2$) needs the quadrature to integrate $Y_{lm}Y_{l'm'}$ exactly: trigonometric degree $\le\Lmax+2$ in $\varphi$ and polynomial degree $\le\Lmax+2$ in $\mu$, i.e.\ $N_\varphi\ge\Lmax+3$ and $N_\mu\ge(\Lmax+3)/2$. Then the only discretization errors are DG in space and backward Euler in time. As in the slab, the time error can be removed for a space sweep by replacing $-\frac{1}{\tau}e^{-t/\tau}$ in \eqref{eq:mms-Q} with the exact backward difference $(e^{-t_k/\tau}-e^{-t_{k-1}/\tau})/\Delta t$. In steady state drop $e^{-t/\tau}$, the $\tau^{-1}V^{-1}$ term and the initial condition.
+
+\paragraph{Error.} Relative Frobenius norm over all reconstruction points $(x_r,y_r,z_r)$, ordinates, groups and time steps, in TT format, $e=\|\Psi-\Psi_{\mathrm{ex}}\|_F/\|\Psi_{\mathrm{ex}}\|_F$; expected orders $h^{p+1}$ in space and $\Delta t$ in time.
+
+\begin{thebibliography}{9}
+\bibitem{ReedHill} W.~H. Reed and T.~R. Hill, Triangular mesh methods for the neutron transport equation, Los Alamos Scientific Laboratory report LA-UR-73-479 (1973).
+\end{thebibliography}
+
+\end{document}

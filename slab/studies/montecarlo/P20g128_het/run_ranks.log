@@ -1,0 +1,24 @@
+L = 30.0 cm, N_z = 300 (h = 0.1 cm), p = 1, N_mu = 24, G = 128, L_max = 20
+He-3 cells [140 159], z in [14.0, 16.0] cm
+  graphite  sigma_t: g=0 1.429e-01, max 5.194e-01 /cm;  sum_l ||S_l|| = 6.886e+01
+  he3       sigma_t: g=0 6.390e-04, max 5.078e+01 /cm;  sum_l ||S_l|| = 7.231e-01
+region map D: shape (300, 2), cells per material [280, 20]
+
+TT ranks of A over (z-dof | mu | phi | g | t), after rounding (term by term in brackets);
+compression = dense entries / TT entries (the dense A would be (prod N)^2 doubles):
+  graphite only, C=1    frw steady          [1, 3, 23, 23, 1, 1]     ([1, 5, 25, 25, 5, 1])  1.9 s
+                        dense 3.40e+12, TT 1.497e+06 entries (11.4 MB), compression 2.27e+06
+  graphite + He-3, C=2  frw steady          [1, 4, 45, 45, 1, 1]     ([1, 7, 47, 47, 6, 1])  8.6 s
+                        dense 3.40e+12, TT 2.283e+06 entries (17.4 MB), compression 1.49e+06
+  graphite only, C=1    adj steady          [1, 3, 23, 23, 1, 1]     ([1, 5, 25, 25, 5, 1])  1.8 s
+                        dense 3.40e+12, TT 1.497e+06 entries (11.4 MB), compression 2.27e+06
+  graphite + He-3, C=2  adj steady          [1, 4, 45, 45, 1, 1]     ([1, 7, 47, 47, 6, 1])  8.4 s
+                        dense 3.40e+12, TT 2.283e+06 entries (17.4 MB), compression 1.49e+06
+  graphite only, C=1    frw transient N_t=20 [1, 3, 23, 23, 2, 1]     ([1, 6, 26, 26, 6, 1])  1.9 s
+                        dense 1.36e+15, TT 1.875e+06 entries (14.3 MB), compression 7.25e+08
+  graphite + He-3, C=2  frw transient N_t=20 [1, 4, 45, 45, 2, 1]     ([1, 8, 48, 48, 7, 1])  8.7 s
+                        dense 1.36e+15, TT 3.021e+06 entries (23.0 MB), compression 4.50e+08
+  graphite only, C=1    adj transient N_t=20 [1, 3, 23, 23, 2, 1]     ([1, 6, 26, 26, 6, 1])  1.8 s
+                        dense 1.36e+15, TT 1.875e+06 entries (14.3 MB), compression 7.25e+08
+  graphite + He-3, C=2  adj transient N_t=20 [1, 4, 45, 45, 2, 1]     ([1, 8, 48, 48, 7, 1])  8.6 s
+                        dense 1.36e+15, TT 3.021e+06 entries (23.0 MB), compression 4.50e+08

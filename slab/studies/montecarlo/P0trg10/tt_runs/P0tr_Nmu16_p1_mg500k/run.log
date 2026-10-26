@@ -1,0 +1,53 @@
+A is a
+TT-matrix with sizes and ranks:
+M = [400, 16, 3, 10, 1]
+N = [400, 16, 3, 10, 1]
+R = [1, 5, 5, 5, 5, 1]
+Device: cpu, dtype: torch.float64
+#entries 809130 compression 2.1949055989583334e-05
+
+F is a
+TT with sizes and ranks:
+N = [400, 16, 3, 10, 1]
+R = [1, 3, 3, 3, 3, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 1464 compression 0.007625
+
+AMEn solver completed in 101.03 seconds.
+Psi is a
+TT with sizes and ranks:
+N = [600, 16, 3, 10, 1]
+R = [1, 33, 9, 9, 1, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 24886 compression 0.08640972222222222
+
+
+AMEn: nswp=40, eps=1e-07, kickrank=4, max_full=15000, round_eps=1e-8 (SlabTransport.run_amen defaults); torchtt amen_solve defaults: local solver GMRES (local_iterations=40, resets=2, no preconditioner), x0 = ones, trunc_norm='res', C++ backend
+operator A: mode sizes [400, 16, 3, 10, 1] x [400, 16, 3, 10, 1]  (z-dof, mu, phi, g, t)
+  ranks R = [1, 5, 5, 5, 5, 1]
+  TT entries = 809130,  dense = 192000^2 = 3.686e+10  ->  compression 2.19e-05
+solution psi_modal: mode sizes N = [400, 16, 3, 10, 1]  (z-dof = N_z (p+1), mu, phi, g, t)
+  ranks R = [1, 33, 9, 9, 1, 1]
+  core shapes = (1, 400, 33), (33, 16, 9), (9, 3, 9), (9, 10, 1), (1, 1, 1)
+  TT entries = 18286,  full tensor = 192000  ->  compression 9.52e-02  (143 KiB vs 1.5 MiB in float64)
+true relative residual ||A psi - F|| / ||F|| = 6.04e-07  (psi rounded at 1e-8)
+max |psi - <psi>_phi| / max|psi| = 6.52e-16
+
+TT: N_z=200, p=1, N_mu=16, N_phi=3, az_sym=False, L_max=0, ranks=[1, 33, 9, 9, 1, 1]
+g | int TT/MG-1 | int TT/CE-1 | TT/MG-1 at z = 0.1, 5.0, 10.0, 15.1, 20.0, 25.0, 29.9 | median|z| | frac|z|>3
+0 | +0.0000     | -0.0085     | -0.000 -0.000 -0.000 +0.001 +0.001 +0.001 +0.000 | 0.6 | 0.01
+1 | -0.0008     | +0.0233     | -0.014 -0.001 -0.001 -0.000 -0.001 -0.001 -0.008 | 1.1 | 0.11
+2 | -0.0006     | -0.0132     | -0.011 +0.000 -0.001 -0.001 -0.000 +0.000 -0.008 | 0.7 | 0.03
+3 | -0.0011     | -0.0239     | -0.010 +0.000 -0.001 -0.001 +0.000 -0.001 -0.009 | 0.9 | 0.04
+4 | -0.0013     | -0.0281     | -0.012 -0.001 -0.002 -0.000 -0.000 -0.002 -0.009 | 1.0 | 0.03
+5 | -0.0012     | -0.0285     | -0.010 -0.001 -0.001 -0.001 -0.001 -0.002 -0.010 | 0.8 | 0.03
+6 | +0.0003     | -0.0260     | -0.012 -0.000 -0.001 +0.003 +0.001 -0.002 -0.012 | 0.8 | 0.03
+7 | -0.0006     | -0.0210     | -0.009 -0.001 +0.001 -0.000 -0.001 +0.001 -0.011 | 0.5 | 0.02
+8 | +0.0075     | +0.0936     | +0.007 -0.008 +0.021 -0.001 +0.023 +0.016 -0.037 | 0.6 | 0.00
+/home/ale234/openmc/graphite/tt_graphite_slab.py:166: RuntimeWarning: invalid value encountered in scalar divide
+  print(f"{g} | {phi_tt[:, g].sum() / a[:, g].sum() - 1:+.4f}     | {phi_tt[:, g].sum() / c[:, g].sum() - 1:+.4f}     | "
+/home/ale234/openmc/graphite/tt_graphite_slab.py:168: RuntimeWarning: All-NaN slice encountered
+  + f" | {np.nanmedian(np.abs(zsc[:, g])):.1f} | {np.nanmean(np.abs(zsc[:, g]) > 3):.2f}")
+9 | +nan     | +nan     | +nan +nan +nan +nan +nan +nan +nan | nan | 0.00

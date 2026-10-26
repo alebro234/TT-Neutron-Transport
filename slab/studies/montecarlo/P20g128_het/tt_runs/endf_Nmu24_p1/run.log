@@ -1,0 +1,33 @@
+xs = endf: C = 2, G = 128, L_max = 20, L = 30.0 cm, N_z = 300 (h = 0.1 cm), He-3 in [14.0, 16.0] cm (cells [140 159])
+first-collision source: ranks [1, 2, 8, 8, 1, 1]
+A is a
+TT-matrix with sizes and ranks:
+M = [600, 24, 1, 128, 1]
+N = [600, 24, 1, 128, 1]
+R = [1, 4, 45, 45, 1, 1]
+Device: cpu, dtype: torch.float64
+#entries 2282986 compression 6.719830595416787e-07
+
+F is a
+TT with sizes and ranks:
+N = [600, 24, 1, 128, 1]
+R = [1, 4, 10, 10, 3, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 7303 compression 0.003962131076388889
+
+AMEn solver completed in 823.28 seconds.
+Psi is a
+TT with sizes and ranks:
+N = [900, 24, 1, 128, 1]
+R = [1, 96, 89, 91, 1, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 311204 compression 0.11255931712962963
+
+
+AMEn: nswp=40, eps=1e-07, kickrank=4; wall 830.8 s
+operator A: ranks [1, 4, 45, 45, 1, 1] (term by term [1, 7, 47, 47, 6, 1]), TT entries 2282986, compression 1.49e+06
+solution psi_modal: N = [600, 24, 1, 128, 1], ranks [1, 96, 89, 91, 1, 1], TT entries 282404, full 1843200 -> compression 6.53e+00
+true relative residual ||A psi - F|| / ||F|| = 5.92e-06
+He-3 absorptions per beam neutron: R = 5.703152e-02  (below 0.625 eV: 0.392)

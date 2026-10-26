@@ -1,0 +1,114 @@
+graphite P7, G = 10, L = 30.0 cm, N_z = 200, p = 1, N_mu = 16, N_phi = 10, az = False; AMEn {'nswp': 40, 'eps': 1e-07, 'kickrank': 4}
+A is a
+TT-matrix with sizes and ranks:
+M = [400, 16, 10, 10, 1]
+N = [400, 16, 10, 10, 1]
+R = [1, 3, 35, 10, 1, 1]
+Device: cpu, dtype: torch.float64
+#entries 542881 compression 1.32539306640625e-06
+
+F is a
+TT with sizes and ranks:
+N = [400, 16, 10, 10, 1]
+R = [1, 3, 4, 4, 3, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 1675 compression 0.0026171875
+
+transport operator: ranks [1, 3, 35, 10, 1, 1] (raw [1, 5, 37, 12, 5, 1]), F ranks [1, 3, 4, 4, 3, 1], dofs 640000, build 0.12 s
+
+=== transport solve 1: x0 = ones (torchtt default) ===
+
+[transport, x0 = ones] AMEn history (12 sweeps, wall 98.56 s; local solves: 2 GMRES (6 its total), 58 direct)
+  sweep | max res    | max rank | ranks                     | time [s]
+      1 | 2.061e+04  |        5 | [1, 5, 5, 5, 2, 1]        | 0.01
+      2 | 1.543e+01  |        9 | [1, 9, 9, 9, 2, 1]        | 0.15
+      3 | 3.489e+00  |       13 | [1, 13, 13, 13, 2, 1]     | 0.70
+      4 | 4.035e-02  |       17 | [1, 17, 13, 13, 2, 1]     | 2.00
+      5 | 2.638e-03  |       21 | [1, 21, 13, 13, 2, 1]     | 3.89
+      6 | 4.144e-04  |       25 | [1, 25, 13, 13, 2, 1]     | 6.48
+      7 | 6.956e-05  |       29 | [1, 29, 13, 13, 2, 1]     | 9.87
+      8 | 1.352e-05  |       33 | [1, 33, 13, 13, 2, 1]     | 14.78
+      9 | 1.432e-06  |       37 | [1, 37, 13, 13, 2, 1]     | 21.02
+     10 | 3.199e-07  |       41 | [1, 41, 13, 13, 2, 1]     | 29.13
+     11 | 3.620e-08  |       43 | [1, 43, 13, 13, 2, 1]     | 5.95
+     12 | 3.343e-08  |       39 | [1, 39, 9, 9, 1, 1]       | 4.58
+  solution ranks [1, 32, 9, 9, 1, 1], entries 18309, true residual 6.82e-07
+
+=== diffusion: groups [0, 1, 2, 3, 4, 5, 6, 7, 8] (G = 9), N_z = 200 cells -> 201 nodes, consistent mass ===
+A is a
+TT-matrix with sizes and ranks:
+M = [201, 9, 1]
+N = [201, 9, 1]
+R = [1, 3, 1, 1]
+Device: cpu, dtype: torch.float64
+#entries 121447 compression 0.037111598203320356
+
+F is a
+TT with sizes and ranks:
+N = [201, 9, 1]
+R = [1, 3, 3, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 687 compression 0.37976782752902155
+
+sigma_tr = [0.1211 0.2329 0.3664 0.3805 0.3815 0.382  0.4038 0.4304 0.5077]
+D_g      = [2.7523 1.4311 0.9097 0.876  0.8737 0.8727 0.8255 0.7746 0.6566]
+
+[diffusion] AMEn history (5 sweeps, wall 0.38 s; local solves: 0 GMRES (0 its total), 15 direct)
+  sweep | max res    | max rank | ranks                     | time [s]
+      1 | 6.174e+01  |        5 | [1, 5, 2, 1]              | 0.00
+      2 | 5.191e+00  |        9 | [1, 9, 2, 1]              | 0.02
+      3 | 1.714e-03  |       13 | [1, 13, 2, 1]             | 0.13
+      4 | 1.258e-12  |       13 | [1, 13, 2, 1]             | 0.11
+      5 | 1.266e-12  |        9 | [1, 9, 1, 1]              | 0.11
+  operator ranks [1, 3, 1, 1] (raw [1, 4, 4, 1]), F ranks [1, 3, 3, 1], solution ranks [1, 9, 1, 1], true residual 1.28e-12, build 0.00 s
+  dense solve 0.156 s, cond(A) = 8.95e+04; ||phi_AMEn - phi_dense|| / ||phi_dense|| = 1.14e-12; min phi = 1.917e-04
+  singular values of phi(z, g) / s_0: 1.0e+00 1.2e-01 1.1e-02 1.1e-03 5.2e-04 5.8e-05 7.8e-06 5.7e-07 8.1e-09
+
+ansatz psi0: ranks [1, 15, 9, 9, 1, 1], built in 0.023 s
+  initial residual ||A x0 - F||/||F||:   ones 7.432e+03   ansatz 3.344e+00
+  initial error ||x0 - psi_1||/||psi_1||: ones 3.495e+01   ansatz 1.293e-01
+
+=== transport solve 2: x0 = P1 ansatz ===
+
+[transport, x0 = P1 ansatz] AMEn history (8 sweeps, wall 82.98 s; local solves: 2 GMRES (15 its total), 38 direct)
+  sweep | max res    | max rank | ranks                     | time [s]
+      1 | 2.729e+00  |       19 | [1, 19, 13, 13, 2, 1]     | 2.41
+      2 | 8.589e-02  |       23 | [1, 23, 13, 13, 2, 1]     | 5.03
+      3 | 3.865e-04  |       27 | [1, 27, 13, 13, 2, 1]     | 8.28
+      4 | 2.111e-05  |       31 | [1, 31, 13, 13, 2, 1]     | 12.75
+      5 | 2.309e-05  |       35 | [1, 35, 13, 13, 2, 1]     | 18.38
+      6 | 1.568e-06  |       39 | [1, 39, 13, 13, 2, 1]     | 25.79
+      7 | 6.499e-08  |       42 | [1, 42, 13, 13, 2, 1]     | 5.71
+      8 | 4.236e-08  |       39 | [1, 39, 9, 9, 1, 1]       | 4.63
+  solution ranks [1, 32, 9, 9, 1, 1], entries 18309, true residual 6.82e-07
+
+================ summary ================
+                             |    x0 = ones | x0 = P1 ansatz
+sweeps                       |           12 |              8
+AMEn wall time [s]           |        98.56 |          82.98
+  + diffusion/ansatz [s]     |              |           0.41
+GMRES local its (total)      |            6 |             15
+max rank during solve        |           43 |             42
+final ranks                  | [1, 32, 9, 9, 1, 1] | [1, 32, 9, 9, 1, 1]
+true residual                |     6.82e-07 |       6.82e-07
+initial residual             |     7.43e+03 |       3.34e+00
+initial error vs psi_1       |     3.49e+01 |       1.29e-01
+||psi_2 - psi_1|| / ||psi_1|| = 3.55e-10
+
+collided scalar flux, diffusion / transport - 1:
+g | integrated | ||.||_2 rel | at z = 0.1, 5.0, 10.0, 15.1, 20.0, 25.0, 29.9
+0 | -0.1565    | 0.4028      | +26.923 +0.058 -0.250 -0.398 -0.491 -0.567 -0.656
+1 | -0.0374    | 0.0440      | +0.010 -0.050 -0.018 -0.017 -0.030 -0.051 +0.052
+2 | -0.0457    | 0.0485      | +0.052 -0.072 -0.044 -0.033 -0.032 -0.040 +0.097
+3 | -0.0524    | 0.0538      | +0.056 -0.075 -0.057 -0.045 -0.041 -0.044 +0.091
+4 | -0.0597    | 0.0605      | +0.057 -0.077 -0.065 -0.056 -0.052 -0.053 +0.083
+5 | -0.0677    | 0.0682      | +0.053 -0.080 -0.072 -0.065 -0.063 -0.064 +0.071
+6 | -0.0820    | 0.0820      | +0.031 -0.089 -0.083 -0.080 -0.079 -0.083 +0.038
+7 | -0.0897    | 0.0897      | +0.026 -0.096 -0.090 -0.088 -0.088 -0.092 +0.030
+8 | -0.0923    | 0.0925      | +0.024 -0.097 -0.093 -0.091 -0.091 -0.094 +0.028
+
+vs OpenMC MG, ||.-MG||_F/||MG||_F: transport 0.0033, diffusion 0.0487
+
+outputs in /home/ale234/TT-Neutron-Transport/slab/studies/ansatz/runs/P7g10_Nmu16_p1

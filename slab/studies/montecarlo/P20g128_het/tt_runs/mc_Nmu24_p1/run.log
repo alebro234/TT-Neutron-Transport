@@ -1,0 +1,43 @@
+xs = mc: C = 2, G = 128, L_max = 20, L = 30.0 cm, N_z = 300 (h = 0.1 cm), He-3 in [14.0, 16.0] cm (cells [140 159])
+first-collision source: ranks [1, 2, 8, 8, 1, 1]
+A is a
+TT-matrix with sizes and ranks:
+M = [600, 24, 1, 128, 1]
+N = [600, 24, 1, 128, 1]
+R = [1, 4, 45, 45, 1, 1]
+Device: cpu, dtype: torch.float64
+#entries 2282986 compression 6.719830595416787e-07
+
+F is a
+TT with sizes and ranks:
+N = [600, 24, 1, 128, 1]
+R = [1, 4, 10, 10, 3, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 7303 compression 0.003962131076388889
+
+AMEn solver completed in 1420.82 seconds.
+Psi is a
+TT with sizes and ranks:
+N = [900, 24, 1, 128, 1]
+R = [1, 100, 102, 104, 1, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 358721 compression 0.1297457320601852
+
+
+AMEn: nswp=40, eps=1e-07, kickrank=4; wall 1429.8 s
+operator A: ranks [1, 4, 45, 45, 1, 1] (term by term [1, 7, 47, 47, 6, 1]), TT entries 2282986, compression 1.49e+06
+solution psi_modal: N = [600, 24, 1, 128, 1], ranks [1, 100, 102, 104, 1, 1], TT entries 328721, full 1843200 -> compression 5.61e+00
+true relative residual ||A psi - F|| / ||F|| = 4.10e-06
+He-3 absorptions per beam neutron: R = 5.693037e-02  (below 0.625 eV: 0.390)
+
+TT vs OpenMC MG: global ||TT - MG||_F / ||MG||_F = 0.0035, He-3 absorptions R_MG = 5.689125e-02 (TT/MG - 1 = +0.0007, sigma_a from --xs mc)
+  fast       g=  4: int TT/MG - 1 = -0.0014, max |TT/MG - 1| = 0.0152 (He-3 cells 0.0044), median MC 1 sd = 0.0029
+  epithermal g= 60: int TT/MG - 1 = -0.0015, max |TT/MG - 1| = 0.0419 (He-3 cells 0.0117), median MC 1 sd = 0.0092
+  thermal    g= 89: int TT/MG - 1 = +0.0230, max |TT/MG - 1| = 0.1222 (He-3 cells 0.0227), median MC 1 sd = 0.0393
+
+TT vs OpenMC CE: global ||TT - CE||_F / ||CE||_F = 0.0155, He-3 absorptions R_CE = 5.704556e-02 (TT/CE - 1 = -0.0020, sigma_a from --xs mc)
+  fast       g=  4: int TT/CE - 1 = -0.0006, max |TT/CE - 1| = 0.0282 (He-3 cells 0.0069), median MC 1 sd = 0.0029
+  epithermal g= 60: int TT/CE - 1 = -0.0055, max |TT/CE - 1| = 0.0287 (He-3 cells 0.0120), median MC 1 sd = 0.0094
+  thermal    g= 89: int TT/CE - 1 = -0.0118, max |TT/CE - 1| = 0.0948 (He-3 cells 0.0614), median MC 1 sd = 0.0378

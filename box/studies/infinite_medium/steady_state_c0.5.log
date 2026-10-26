@@ -1,0 +1,687 @@
+A is a
+TT-matrix with sizes and ranks:
+M = [400, 400, 400, 64, 64, 1, 1]
+N = [400, 400, 400, 64, 64, 1, 1]
+R = [1, 3, 5, 7, 7, 1, 1, 1]
+Device: cpu, dtype: torch.float64
+#entries 8709378 compression 1.2673813034780323e-16
+
+F is a
+TT with sizes and ranks:
+N = [400, 400, 400, 64, 64, 1, 1]
+R = [1, 1, 1, 1, 1, 1, 1, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 1330 compression 5.07354736328125e-09
+
+Starting AMEn solve with:
+	epsilon              : 1e-06
+	sweeps               : 20
+	local iterations     : 40
+	resets               : 2
+	local preconditioner : N
+
+
+Starting sweep 1
+	Core 0
+		Choosing direct solver (local size 400)...
+		dx = 422270, res_now = 2.3705e-16, res_old = 391719
+	Core 1
+		Choosing direct solver (local size 2000)...
+		dx = 0.954984, res_now = 2.84793e-16, res_old = 0.962198
+	Core 2
+		Choosing direct solver (local size 2000)...
+		dx = 0.996657, res_now = 3.70184e-15, res_old = 1.0786
+	Core 3
+		Choosing direct solver (local size 320)...
+		dx = 1.10892, res_now = 1.22581e-15, res_old = 1.99424
+	Core 4
+		Choosing direct solver (local size 320)...
+		dx = 1.20642, res_now = 8.29836e-16, res_old = 1.31289
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 4.74123e-16, res_now = 1.44354e-16, res_old = 1.02074e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 1.11038e-16, res_now = 0, res_old = 1.44354e-16
+Solution rank [ 1 5 5 5 5 2 2 1 ]
+Maxres 391719
+Time 511.188 ms
+
+Starting sweep 2
+	Core 0
+		Choosing direct solver (local size 2000)...
+		dx = 0.436801, res_now = 2.41838e-15, res_old = 0.814205
+	Core 1
+		Choosing iterative solver (local size 18000)...
+		Finished with flag 0 after 80 iterations with relres 0.00744159 (from 2.03153e-07)
+		Time needed 1255.11 ms
+		dx = 0.390691, res_now = 0.00744159, res_old = 0.930246
+	Core 2
+		Choosing iterative solver (local size 18000)...
+		Finished with flag 0 after 80 iterations with relres 0.00878863 (from 1.81015e-07)
+		Time needed 2905.8 ms
+		dx = 0.42634, res_now = 0.00878863, res_old = 1.04401
+	Core 3
+		Choosing direct solver (local size 2880)...
+		dx = 0.374772, res_now = 3.44325e-15, res_old = 0.576859
+	Core 4
+		Choosing direct solver (local size 576)...
+		dx = 0.023301, res_now = 1.77957e-15, res_old = 0.0720439
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 9.29512e-16, res_now = 1.30265e-16, res_old = 8.97859e-16
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 7.61394e-18, res_now = 0, res_old = 1.61573e-17
+Solution rank [ 1 9 9 9 9 2 2 1 ]
+Maxres 1.04401
+Time 4944.7 ms
+
+Starting sweep 3
+	Core 0
+		Choosing direct solver (local size 3600)...
+		dx = 0.141629, res_now = 8.72061e-15, res_old = 0.403909
+	Core 1
+		Choosing iterative solver (local size 46800)...
+		Finished with flag 0 after 80 iterations with relres 0.0162106 (from 4.19389e-07)
+		Time needed 1680.25 ms
+		dx = 0.190666, res_now = 0.0162106, res_old = 0.450613
+	Core 2
+		Choosing iterative solver (local size 46800)...
+		Finished with flag 0 after 80 iterations with relres 0.0239052 (from 5.8135e-07)
+		Time needed 3772.86 ms
+		dx = 0.156135, res_now = 0.0239052, res_old = 0.325075
+	Core 3
+		Choosing direct solver (local size 7488)...
+		dx = 0.251468, res_now = 5.74224e-15, res_old = 0.425989
+	Core 4
+		Choosing direct solver (local size 832)...
+		dx = 0.0279907, res_now = 1.4076e-15, res_old = 0.0527921
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 7.85159e-16, res_now = 0, res_old = 1.17827e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 0, res_now = 0, res_old = 0
+Solution rank [ 1 13 13 13 13 2 2 1 ]
+Maxres 0.450613
+Time 10377.4 ms
+
+Starting sweep 4
+	Core 0
+		Choosing direct solver (local size 5200)...
+		dx = 0.104751, res_now = 1.32551e-14, res_old = 0.461807
+	Core 1
+		Choosing iterative solver (local size 88400)...
+		Finished with flag 0 after 80 iterations with relres 0.0132899 (from 5.24555e-07)
+		Time needed 2693.91 ms
+		dx = 0.114542, res_now = 0.0132899, res_old = 0.360272
+	Core 2
+		Choosing iterative solver (local size 88400)...
+		Finished with flag 0 after 80 iterations with relres 0.0249452 (from 5.99144e-07)
+		Time needed 5483.92 ms
+		dx = 0.137578, res_now = 0.0249452, res_old = 0.31542
+	Core 3
+		Choosing direct solver (local size 14144)...
+		dx = 0.250959, res_now = 7.92276e-15, res_old = 0.41245
+	Core 4
+		Choosing direct solver (local size 1088)...
+		dx = 0.00697709, res_now = 1.37387e-15, res_old = 0.0122015
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 7.24574e-16, res_now = 1.95574e-16, res_old = 1.00726e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 2.22204e-16, res_now = 0, res_old = 1.95194e-16
+Solution rank [ 1 17 17 17 17 2 2 1 ]
+Maxres 0.461807
+Time 37247.9 ms
+
+Starting sweep 5
+	Core 0
+		Choosing direct solver (local size 6800)...
+		dx = 0.0597987, res_now = 1.19272e-14, res_old = 0.246879
+	Core 1
+		Choosing iterative solver (local size 142800)...
+		Finished with flag 0 after 80 iterations with relres 0.00882924 (from 7.54202e-07)
+		Time needed 3533.36 ms
+		dx = 0.0858488, res_now = 0.00882924, res_old = 0.250572
+	Core 2
+		Choosing iterative solver (local size 142800)...
+		Finished with flag 0 after 80 iterations with relres 0.0223298 (from 6.77727e-07)
+		Time needed 7387.73 ms
+		dx = 0.119558, res_now = 0.0223298, res_old = 0.278847
+	Core 3
+		Choosing iterative solver (local size 22848)...
+		Finished with flag 1 after 31 iterations with relres 1.3445e-07 (from 6.74624e-07)
+		Time needed 137.478 ms
+		dx = 0.165712, res_now = 1.3445e-07, res_old = 0.28013
+	Core 4
+		Choosing direct solver (local size 1344)...
+		dx = 0.00269405, res_now = 1.15003e-15, res_old = 0.00480392
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 7.31252e-16, res_now = 1.96541e-16, res_old = 1.05026e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 2.22045e-16, res_now = 0, res_old = 1.96637e-16
+Solution rank [ 1 21 21 21 21 2 2 1 ]
+Maxres 0.28013
+Time 14983.4 ms
+
+Starting sweep 6
+	Core 0
+		Choosing direct solver (local size 8400)...
+		dx = 0.0305637, res_now = 1.24243e-14, res_old = 0.136771
+	Core 1
+		Choosing iterative solver (local size 210000)...
+		Finished with flag 0 after 80 iterations with relres 0.00493445 (from 1.16663e-06)
+		Time needed 4457.49 ms
+		dx = 0.047457, res_now = 0.00493445, res_old = 0.16199
+	Core 2
+		Choosing iterative solver (local size 210000)...
+		Finished with flag 0 after 80 iterations with relres 0.0145766 (from 9.30495e-07)
+		Time needed 8842.33 ms
+		dx = 0.0792536, res_now = 0.0145766, res_old = 0.203099
+	Core 3
+		Choosing iterative solver (local size 33600)...
+		Finished with flag 1 after 32 iterations with relres 1.76308e-07 (from 8.48898e-07)
+		Time needed 205.319 ms
+		dx = 0.132365, res_now = 1.76308e-07, res_old = 0.222621
+	Core 4
+		Choosing direct solver (local size 1600)...
+		dx = 0.000766885, res_now = 1.60102e-15, res_old = 0.00130744
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.11512e-15, res_now = 1.9501e-16, res_old = 1.29429e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 3.33493e-16, res_now = 0, res_old = 3.8926e-16
+Solution rank [ 1 25 25 25 25 2 2 1 ]
+Maxres 0.222621
+Time 20086.7 ms
+
+Starting sweep 7
+	Core 0
+		Choosing direct solver (local size 10000)...
+		dx = 0.0147959, res_now = 1.41038e-14, res_old = 0.0797464
+	Core 1
+		Choosing iterative solver (local size 290000)...
+		Finished with flag 0 after 80 iterations with relres 0.00315818 (from 2.11064e-06)
+		Time needed 6380.2 ms
+		dx = 0.0315554, res_now = 0.00315818, res_old = 0.089538
+	Core 2
+		Choosing iterative solver (local size 290000)...
+		Finished with flag 0 after 80 iterations with relres 0.0111672 (from 1.20998e-06)
+		Time needed 11693.2 ms
+		dx = 0.0595563, res_now = 0.0111672, res_old = 0.156186
+	Core 3
+		Choosing iterative solver (local size 46400)...
+		Finished with flag 1 after 33 iterations with relres 1.32994e-07 (from 1.02184e-06)
+		Time needed 301.897 ms
+		dx = 0.11172, res_now = 1.32994e-07, res_old = 0.184944
+	Core 4
+		Choosing direct solver (local size 1856)...
+		dx = 0.000446851, res_now = 2.34453e-15, res_old = 0.000786705
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 7.51691e-16, res_now = 0, res_old = 1.07999e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 2.24543e-16, res_now = 0, res_old = 1.9784e-16
+Solution rank [ 1 29 29 29 29 2 2 1 ]
+Maxres 0.184944
+Time 28890.5 ms
+
+Starting sweep 8
+	Core 0
+		Choosing direct solver (local size 11600)...
+		dx = 0.0205321, res_now = 1.71362e-14, res_old = 0.0701327
+	Core 1
+		Choosing iterative solver (local size 382800)...
+		Finished with flag 0 after 80 iterations with relres 0.00418444 (from 1.94571e-06)
+		Time needed 8690.47 ms
+		dx = 0.0396972, res_now = 0.00418444, res_old = 0.0971276
+	Core 2
+		Choosing iterative solver (local size 382800)...
+		Finished with flag 0 after 80 iterations with relres 0.0108273 (from 1.42363e-06)
+		Time needed 16106.4 ms
+		dx = 0.0627502, res_now = 0.0108273, res_old = 0.132746
+	Core 3
+		Choosing iterative solver (local size 61248)...
+		Finished with flag 1 after 33 iterations with relres 1.82501e-07 (from 1.02626e-06)
+		Time needed 374.115 ms
+		dx = 0.109184, res_now = 1.82501e-07, res_old = 0.184146
+	Core 4
+		Choosing direct solver (local size 2112)...
+		dx = 7.46384e-05, res_now = 1.34715e-15, res_old = 0.000122953
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 7.98384e-16, res_now = 0, res_old = 1.07608e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 2.22656e-16, res_now = 0, res_old = 2.08955e-16
+Solution rank [ 1 33 33 33 33 2 2 1 ]
+Maxres 0.184146
+Time 40787.7 ms
+
+Starting sweep 9
+	Core 0
+		Choosing direct solver (local size 13200)...
+		dx = 0.0157779, res_now = 1.80837e-14, res_old = 0.0591268
+	Core 1
+		Choosing iterative solver (local size 488400)...
+		Finished with flag 0 after 80 iterations with relres 0.00410986 (from 2.16954e-06)
+		Time needed 11174.8 ms
+		dx = 0.0341174, res_now = 0.00410986, res_old = 0.0871072
+	Core 2
+		Choosing iterative solver (local size 488400)...
+		Finished with flag 0 after 80 iterations with relres 0.00898983 (from 1.54473e-06)
+		Time needed 20400.8 ms
+		dx = 0.049897, res_now = 0.00898983, res_old = 0.12234
+	Core 3
+		Choosing iterative solver (local size 78144)...
+		Finished with flag 1 after 33 iterations with relres 1.60334e-07 (from 1.2376e-06)
+		Time needed 485.611 ms
+		dx = 0.0908639, res_now = 1.60334e-07, res_old = 0.1527
+	Core 4
+		Choosing direct solver (local size 2368)...
+		dx = 4.89497e-05, res_now = 1.51332e-15, res_old = 9.0231e-05
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.0773e-15, res_now = 6.11078e-18, res_old = 1.37773e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 2.22204e-16, res_now = 0, res_old = 1.96402e-16
+Solution rank [ 1 37 37 37 37 2 2 1 ]
+Maxres 0.1527
+Time 54111.9 ms
+
+Starting sweep 10
+	Core 0
+		Choosing direct solver (local size 14800)...
+		dx = 0.0101138, res_now = 1.79336e-14, res_old = 0.0522751
+	Core 1
+		Choosing iterative solver (local size 606800)...
+		Finished with flag 0 after 80 iterations with relres 0.00270054 (from 2.84735e-06)
+		Time needed 14601.8 ms
+		dx = 0.0206285, res_now = 0.00270054, res_old = 0.0663712
+	Core 2
+		Choosing iterative solver (local size 606800)...
+		Finished with flag 0 after 80 iterations with relres 0.00671201 (from 2.0455e-06)
+		Time needed 24679.5 ms
+		dx = 0.0373791, res_now = 0.00671201, res_old = 0.0923892
+	Core 3
+		Choosing iterative solver (local size 97088)...
+		Finished with flag 1 after 34 iterations with relres 1.32939e-07 (from 1.48201e-06)
+		Time needed 610.816 ms
+		dx = 0.0759446, res_now = 1.32939e-07, res_old = 0.127518
+	Core 4
+		Choosing direct solver (local size 2624)...
+		dx = 2.14616e-05, res_now = 2.83591e-15, res_old = 3.69527e-05
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.33022e-15, res_now = 3.89726e-16, res_old = 1.37722e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 4.44409e-16, res_now = 0, res_old = 3.89726e-16
+Solution rank [ 1 41 41 41 41 2 2 1 ]
+Maxres 0.127518
+Time 71265.4 ms
+
+Starting sweep 11
+	Core 0
+		Choosing iterative solver (local size 16400)...
+		Finished with flag 0 after 80 iterations with relres 0.000700105 (from 4.47794e-06)
+		Time needed 238.741 ms
+		dx = 0.00973782, res_now = 0.000700105, res_old = 0.042203
+	Core 1
+		Choosing iterative solver (local size 738000)...
+		Finished with flag 0 after 80 iterations with relres 0.00256061 (from 3.59672e-06)
+		Time needed 17419.8 ms
+		dx = 0.0195127, res_now = 0.00256061, res_old = 0.0525429
+	Core 2
+		Choosing iterative solver (local size 738000)...
+		Finished with flag 0 after 80 iterations with relres 0.00591252 (from 2.32867e-06)
+		Time needed 29790.3 ms
+		dx = 0.0337709, res_now = 0.00591252, res_old = 0.0811547
+	Core 3
+		Choosing iterative solver (local size 118080)...
+		Finished with flag 1 after 34 iterations with relres 1.65642e-07 (from 1.72579e-06)
+		Time needed 732.247 ms
+		dx = 0.0656214, res_now = 1.65642e-07, res_old = 0.109505
+	Core 4
+		Choosing direct solver (local size 2880)...
+		dx = 1.97329e-05, res_now = 2.39512e-15, res_old = 3.58288e-05
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 9.87635e-16, res_now = 0, res_old = 1.29543e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 2.22045e-16, res_now = 0, res_old = 1.95933e-16
+Solution rank [ 1 45 45 45 45 2 2 1 ]
+Maxres 0.109505
+Time 50679.6 ms
+
+Starting sweep 12
+	Core 0
+		Choosing iterative solver (local size 18000)...
+		Finished with flag 0 after 80 iterations with relres 0.000688373 (from 5.98767e-06)
+		Time needed 248.988 ms
+		dx = 0.0096313, res_now = 0.000688373, res_old = 0.0315619
+	Core 1
+		Choosing iterative solver (local size 882000)...
+		Finished with flag 0 after 80 iterations with relres 0.00249538 (from 4.54169e-06)
+		Time needed 18954.2 ms
+		dx = 0.0183505, res_now = 0.00249538, res_old = 0.0416105
+	Core 2
+		Choosing iterative solver (local size 882000)...
+		Finished with flag 0 after 80 iterations with relres 0.00548531 (from 2.56958e-06)
+		Time needed 33419.7 ms
+		dx = 0.0317256, res_now = 0.00548531, res_old = 0.073546
+	Core 3
+		Choosing iterative solver (local size 141120)...
+		Finished with flag 1 after 34 iterations with relres 1.86539e-07 (from 1.921e-06)
+		Time needed 902.241 ms
+		dx = 0.0568156, res_now = 1.86539e-07, res_old = 0.0983768
+	Core 4
+		Choosing direct solver (local size 3136)...
+		dx = 7.91578e-06, res_now = 2.77421e-15, res_old = 1.43995e-05
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 8.99331e-16, res_now = 0, res_old = 9.64384e-16
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 0, res_now = 0, res_old = 0
+Solution rank [ 1 49 49 49 49 2 2 1 ]
+Maxres 0.0983768
+Time 56400.3 ms
+
+Starting sweep 13
+	Core 0
+		Choosing iterative solver (local size 19600)...
+		Finished with flag 0 after 80 iterations with relres 0.000663416 (from 7.87937e-06)
+		Time needed 262.383 ms
+		dx = 0.00852539, res_now = 0.000663416, res_old = 0.0239844
+	Core 1
+		Choosing iterative solver (local size 1038800)...
+		Finished with flag 0 after 80 iterations with relres 0.00230101 (from 5.2519e-06)
+		Time needed 22691.4 ms
+		dx = 0.0157465, res_now = 0.00230101, res_old = 0.0359836
+	Core 2
+		Choosing iterative solver (local size 1038800)...
+		Finished with flag 0 after 80 iterations with relres 0.0054395 (from 2.58694e-06)
+		Time needed 38714 ms
+		dx = 0.030996, res_now = 0.0054395, res_old = 0.0730524
+	Core 3
+		Choosing iterative solver (local size 166208)...
+		Finished with flag 1 after 35 iterations with relres 1.39889e-07 (from 1.9848e-06)
+		Time needed 1090.15 ms
+		dx = 0.0547933, res_now = 1.39889e-07, res_old = 0.0952148
+	Core 4
+		Choosing direct solver (local size 3392)...
+		dx = 2.68706e-06, res_now = 3.80951e-15, res_old = 4.89162e-06
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 7.07264e-16, res_now = 1.95876e-16, res_old = 1.01561e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 0, res_now = 0, res_old = 0
+Solution rank [ 1 53 53 53 53 2 2 1 ]
+Maxres 0.0952148
+Time 66089.9 ms
+
+Starting sweep 14
+	Core 0
+		Choosing iterative solver (local size 21200)...
+		Finished with flag 0 after 80 iterations with relres 0.00053933 (from 7.98673e-06)
+		Time needed 277.719 ms
+		dx = 0.0064575, res_now = 0.00053933, res_old = 0.023662
+	Core 1
+		Choosing iterative solver (local size 1208400)...
+		Finished with flag 0 after 80 iterations with relres 0.00208905 (from 5.4327e-06)
+		Time needed 27272.1 ms
+		dx = 0.0138583, res_now = 0.00208905, res_old = 0.0347861
+	Core 2
+		Choosing iterative solver (local size 1208400)...
+		Finished with flag 0 after 80 iterations with relres 0.00470982 (from 2.88526e-06)
+		Time needed 45226 ms
+		dx = 0.0264847, res_now = 0.00470982, res_old = 0.0654992
+	Core 3
+		Choosing iterative solver (local size 193344)...
+		Finished with flag 1 after 35 iterations with relres 1.62572e-07 (from 2.29146e-06)
+		Time needed 1270.13 ms
+		dx = 0.0482623, res_now = 1.62572e-07, res_old = 0.0824723
+	Core 4
+		Choosing direct solver (local size 3648)...
+		dx = 1.67493e-06, res_now = 2.20375e-15, res_old = 3.15934e-06
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.10213e-15, res_now = 2.44937e-17, res_old = 1.49412e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 1.65361e-17, res_now = 0, res_old = 2.44937e-17
+Solution rank [ 1 57 57 57 57 2 2 1 ]
+Maxres 0.0824723
+Time 78182.3 ms
+
+Starting sweep 15
+	Core 0
+		Choosing iterative solver (local size 22800)...
+		Finished with flag 0 after 80 iterations with relres 0.000550812 (from 8.40005e-06)
+		Time needed 271.58 ms
+		dx = 0.00665413, res_now = 0.000550812, res_old = 0.0224978
+	Core 1
+		Choosing iterative solver (local size 1390800)...
+		Finished with flag 0 after 80 iterations with relres 0.00194267 (from 5.74822e-06)
+		Time needed 31375.8 ms
+		dx = 0.0131298, res_now = 0.00194267, res_old = 0.0328767
+	Core 2
+		Choosing iterative solver (local size 1390800)...
+		Finished with flag 0 after 80 iterations with relres 0.00420459 (from 3.3575e-06)
+		Time needed 51679.8 ms
+		dx = 0.0237056, res_now = 0.00420459, res_old = 0.0562867
+	Core 3
+		Choosing iterative solver (local size 222528)...
+		Finished with flag 1 after 35 iterations with relres 1.88488e-07 (from 2.59561e-06)
+		Time needed 1525.05 ms
+		dx = 0.0421417, res_now = 1.88488e-07, res_old = 0.0728085
+	Core 4
+		Choosing direct solver (local size 3840)...
+		dx = 5.9046e-07, res_now = 2.69242e-15, res_old = 1.10849e-06
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.20317e-15, res_now = 0, res_old = 1.67698e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 1.05293e-18, res_now = 0, res_old = 1.52966e-18
+Solution rank [ 1 61 61 61 60 2 2 1 ]
+Maxres 0.0728085
+Time 89597.6 ms
+
+Starting sweep 16
+	Core 0
+		Choosing iterative solver (local size 24400)...
+		Finished with flag 0 after 80 iterations with relres 0.000518256 (from 9.91567e-06)
+		Time needed 280.429 ms
+		dx = 0.00696289, res_now = 0.000518256, res_old = 0.019059
+	Core 1
+		Choosing iterative solver (local size 1586000)...
+		Finished with flag 0 after 80 iterations with relres 0.00200166 (from 6.36819e-06)
+		Time needed 34906.3 ms
+		dx = 0.0127072, res_now = 0.00200166, res_old = 0.029676
+	Core 2
+		Choosing iterative solver (local size 1586000)...
+		Finished with flag 0 after 80 iterations with relres 0.00406045 (from 3.48885e-06)
+		Time needed 58323.4 ms
+		dx = 0.0223651, res_now = 0.00406045, res_old = 0.0541675
+	Core 3
+		Choosing iterative solver (local size 249600)...
+		Finished with flag 1 after 36 iterations with relres 1.65731e-07 (from 2.87708e-06)
+		Time needed 1773.9 ms
+		dx = 0.0376693, res_now = 1.65731e-07, res_old = 0.0656853
+	Core 4
+		Choosing direct solver (local size 4032)...
+		dx = 3.28154e-07, res_now = 2.42583e-15, res_old = 6.29029e-07
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.64524e-15, res_now = 0, res_old = 1.91881e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 4.44169e-16, res_now = 0, res_old = 3.92312e-16
+Solution rank [ 1 65 65 65 63 2 2 1 ]
+Maxres 0.0656853
+Time 100416 ms
+
+Starting sweep 17
+	Core 0
+		Choosing iterative solver (local size 26000)...
+		Finished with flag 0 after 80 iterations with relres 0.000477103 (from 1.33858e-05)
+		Time needed 304.252 ms
+		dx = 0.00607093, res_now = 0.000477103, res_old = 0.0141181
+	Core 1
+		Choosing iterative solver (local size 1794000)...
+		Finished with flag 0 after 80 iterations with relres 0.00182271 (from 7.69551e-06)
+		Time needed 41297.4 ms
+		dx = 0.0111916, res_now = 0.00182271, res_old = 0.0245575
+	Core 2
+		Choosing iterative solver (local size 1794000)...
+		Finished with flag 0 after 80 iterations with relres 0.00379435 (from 3.84149e-06)
+		Time needed 66003.5 ms
+		dx = 0.0208348, res_now = 0.00379435, res_old = 0.0491951
+	Core 3
+		Choosing iterative solver (local size 278208)...
+		Finished with flag 1 after 36 iterations with relres 1.55562e-07 (from 3.0179e-06)
+		Time needed 2115.46 ms
+		dx = 0.0357513, res_now = 1.55562e-07, res_old = 0.0626204
+	Core 4
+		Choosing direct solver (local size 4096)...
+		dx = 2.36421e-07, res_now = 2.62299e-15, res_old = 4.21002e-07
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.22316e-15, res_now = 0, res_old = 1.56816e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 8.40863e-18, res_now = 0, res_old = 1.22453e-17
+Solution rank [ 1 69 69 69 64 2 2 1 ]
+Maxres 0.0626204
+Time 115693 ms
+
+Starting sweep 18
+	Core 0
+		Choosing iterative solver (local size 27600)...
+		Finished with flag 0 after 80 iterations with relres 0.000417106 (from 1.33284e-05)
+		Time needed 309.755 ms
+		dx = 0.00527435, res_now = 0.000417106, res_old = 0.0141789
+	Core 1
+		Choosing iterative solver (local size 2014800)...
+		Finished with flag 0 after 80 iterations with relres 0.00166963 (from 7.78936e-06)
+		Time needed 2.63521e+06 ms
+		dx = 0.0105517, res_now = 0.00166963, res_old = 0.0242616
+	Core 2
+		Choosing iterative solver (local size 2014800)...
+		Finished with flag 0 after 80 iterations with relres 0.00357035 (from 3.97807e-06)
+		Time needed 75690.7 ms
+		dx = 0.0197278, res_now = 0.00357035, res_old = 0.047506
+	Core 3
+		Choosing iterative solver (local size 299008)...
+		Finished with flag 1 after 36 iterations with relres 1.59952e-07 (from 3.2043e-06)
+		Time needed 2777.96 ms
+		dx = 0.0332361, res_now = 1.59952e-07, res_old = 0.0589777
+	Core 4
+		Choosing direct solver (local size 4096)...
+		dx = 1.07416e-07, res_now = 4.42538e-15, res_old = 1.65491e-07
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.05597e-15, res_now = 1.97262e-16, res_old = 1.3791e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 0, res_now = 0, res_old = 0
+Solution rank [ 1 73 73 73 64 2 2 1 ]
+Maxres 0.0589777
+Time 2.72117e+06 ms
+
+Starting sweep 19
+	Core 0
+		Choosing iterative solver (local size 29200)...
+		Finished with flag 0 after 80 iterations with relres 0.000393556 (from 1.5544e-05)
+		Time needed 314.336 ms
+		dx = 0.00485635, res_now = 0.000393556, res_old = 0.0121579
+	Core 1
+		Choosing iterative solver (local size 2248400)...
+		Finished with flag 0 after 80 iterations with relres 0.00151735 (from 9.45518e-06)
+		Time needed 53371.6 ms
+		dx = 0.00902488, res_now = 0.00151735, res_old = 0.0199872
+	Core 2
+		Choosing iterative solver (local size 2248400)...
+		Finished with flag 0 after 80 iterations with relres 0.00323976 (from 4.20751e-06)
+		Time needed 89545.1 ms
+		dx = 0.0177578, res_now = 0.00323976, res_old = 0.0449155
+	Core 3
+		Choosing iterative solver (local size 315392)...
+		Finished with flag 1 after 36 iterations with relres 1.41454e-07 (from 3.65394e-06)
+		Time needed 3300.48 ms
+		dx = 0.0297163, res_now = 1.41454e-07, res_old = 0.0517202
+	Core 4
+		Choosing direct solver (local size 4160)...
+		dx = 1.13029e-07, res_now = 1.73161e-15, res_old = 1.8183e-07
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 2.65971e-15, res_now = 2.44274e-17, res_old = 2.8403e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 4.49091e-16, res_now = 0, res_old = 3.916e-16
+Solution rank [ 1 77 77 77 65 2 2 1 ]
+Maxres 0.0517202
+Time 154213 ms
+
+Starting sweep 20
+	Core 0
+		Choosing iterative solver (local size 30800)...
+		Finished with flag 0 after 80 iterations with relres 0.000327003 (from 1.68592e-05)
+		Time needed 329.794 ms
+		dx = 0.00418142, res_now = 0.000327003, res_old = 0.0112095
+	Core 1
+		Choosing iterative solver (local size 2494800)...
+		Finished with flag 0 after 80 iterations with relres 0.00132407 (from 1.08217e-05)
+		Time needed 56989.3 ms
+		dx = 0.0082954, res_now = 0.00132407, res_old = 0.0174633
+	Core 2
+		Choosing iterative solver (local size 2494800)...
+		Finished with flag 0 after 80 iterations with relres 0.00293951 (from 4.78135e-06)
+		Time needed 100551 ms
+		dx = 0.0162235, res_now = 0.00293951, res_old = 0.0395249
+	Core 3
+		Choosing iterative solver (local size 331776)...
+		Finished with flag 1 after 36 iterations with relres 1.86359e-07 (from 3.79734e-06)
+		Time needed 2685.57 ms
+		dx = 0.0277741, res_now = 1.86359e-07, res_old = 0.049767
+	Core 4
+		Choosing direct solver (local size 4288)...
+		dx = 9.735e-08, res_now = 2.70778e-15, res_old = 1.40981e-07
+	Core 5
+		Choosing direct solver (local size 2)...
+		dx = 1.25461e-15, res_now = 0, res_old = 1.63983e-15
+	Core 6
+		Choosing direct solver (local size 2)...
+		dx = 1.6719e-17, res_now = 0, res_old = 2.44099e-17
+Solution rank [ 1 81 81 81 67 2 2 1 ]
+Maxres 0.049767
+Time 170245 ms
+
+Finished after 20 sweeps and 3885.9 seconds
+
+AMEn solver completed in 3885.93 seconds.
+Psi is a
+TT with sizes and ranks:
+N = [400, 400, 400, 64, 64, 1, 1]
+R = [1, 81, 81, 81, 63, 1, 1, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 5611826 compression 2.140741729736328e-05
+
+total solve time 3889.1 s, true residual 9.410e-02
+relative L2 error (r^2 dr), r < 2.0: 1.163e-03
+relative L2 error (r^2 dr), r < 4.0: 1.166e-03
+relative L2 error (r^2 dr), r < 5.0: 1.176e-03

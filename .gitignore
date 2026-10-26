@@ -9,15 +9,29 @@ venv/
 .ipynb_checkpoints/
 
 # LaTeX build files (the .tex, .bib and .pdf are tracked)
-notes/*.aux
-notes/*.bbl
-notes/*.blg
-notes/*.fdb_latexmk
-notes/*.fls
-notes/*.log
-notes/*.out
-notes/*.toc
-notes/*.synctex.gz
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+/box/docs/**/*.log
+/slab/docs/**/*.log
+
+# slab notes are kept out of the repository
+/slab/notes/
+
+# local backups
+*.bak_*
+
+# large solution tensors (regenerable with the study scripts)
+/box/studies/infinite_medium/phi_tt_c0.5.pt
+/box/studies/infinite_medium/phi_tt_c0.5_cont.pt
 
 # Editors / OS
 .vscode/

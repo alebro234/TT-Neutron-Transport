@@ -1,0 +1,307 @@
+A is a
+TT-matrix with sizes and ranks:
+M = [400, 16, 3, 10, 1]
+N = [400, 16, 3, 10, 1]
+R = [1, 5, 5, 5, 5, 1]
+Device: cpu, dtype: torch.float64
+#entries 809130 compression 2.1949055989583334e-05
+
+F is a
+TT with sizes and ranks:
+N = [400, 16, 3, 10, 1]
+R = [1, 3, 3, 3, 3, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 1464 compression 0.007625
+
+Starting AMEn solve with:
+	epsilon              : 1e-07
+	sweeps               : 40
+	local iterations     : 40
+	resets               : 2
+	local preconditioner : N
+
+
+Starting sweep 1
+	Core 0
+		Choosing direct solver (local size 400)...
+		dx = 0.874399, res_now = 4.00715e-12, res_old = 23323.2
+	Core 1
+		Choosing direct solver (local size 80)...
+		dx = 349.779, res_now = 1.60673e-14, res_old = 6934.45
+	Core 2
+		Choosing direct solver (local size 15)...
+		dx = 3.41004e-16, res_now = 1.5365e-14, res_old = 2.884e-14
+	Core 3
+		Choosing direct solver (local size 50)...
+		dx = 0.928005, res_now = 7.97141e-15, res_old = 1.16607
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 8.90873e-16, res_now = 0, res_old = 5.35616e-15
+Solution rank [ 1 5 5 5 2 1 ]
+Maxres 23323.2
+Time 12.06 ms
+
+Starting sweep 2
+	Core 0
+		Choosing direct solver (local size 2000)...
+		dx = 0.757491, res_now = 9.1186e-14, res_old = 11.4648
+	Core 1
+		Choosing direct solver (local size 720)...
+		dx = 0.292354, res_now = 6.26374e-14, res_old = 0.622447
+	Core 2
+		Choosing direct solver (local size 120)...
+		dx = 0.182379, res_now = 1.22076e-14, res_old = 0.164208
+	Core 3
+		Choosing direct solver (local size 90)...
+		dx = 0.308621, res_now = 6.20828e-15, res_old = 0.104015
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 3.33099e-15, res_now = 0, res_old = 6.90986e-15
+Solution rank [ 1 9 8 9 2 1 ]
+Maxres 11.4648
+Time 157.26 ms
+
+Starting sweep 3
+	Core 0
+		Choosing direct solver (local size 3600)...
+		dx = 0.0496117, res_now = 6.49813e-14, res_old = 1.80433
+	Core 1
+		Choosing direct solver (local size 1664)...
+		dx = 0.0346102, res_now = 2.46796e-13, res_old = 0.174783
+	Core 2
+		Choosing direct solver (local size 324)...
+		dx = 0.00143287, res_now = 8.98892e-14, res_old = 0.00573113
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 1.78271e-14, res_now = 1.15169e-14, res_old = 9.20878e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 9.48575e-16, res_now = 2.58047e-14, res_old = 1.49797e-14
+Solution rank [ 1 13 12 13 2 1 ]
+Maxres 1.80433
+Time 667.69 ms
+
+Starting sweep 4
+	Core 0
+		Choosing direct solver (local size 5200)...
+		dx = 0.0018779, res_now = 8.33226e-14, res_old = 0.159481
+	Core 1
+		Choosing direct solver (local size 3264)...
+		dx = 0.000593155, res_now = 1.57272e-13, res_old = 0.0118795
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 5.31513e-14, res_now = 5.8204e-14, res_old = 1.60858e-13
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 3.20976e-15, res_now = 7.00393e-16, res_old = 6.32396e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 8.9509e-16, res_now = 2.9397e-14, res_old = 1.82744e-15
+Solution rank [ 1 17 13 13 2 1 ]
+Maxres 0.159481
+Time 1896.2 ms
+
+Starting sweep 5
+	Core 0
+		Choosing direct solver (local size 6800)...
+		dx = 7.5314e-05, res_now = 1.02837e-13, res_old = 0.00684047
+	Core 1
+		Choosing direct solver (local size 4368)...
+		dx = 2.59144e-05, res_now = 1.11385e-13, res_old = 0.000461039
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 7.55312e-14, res_now = 3.81641e-15, res_old = 1.57481e-13
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 3.17333e-15, res_now = 2.93831e-14, res_old = 1.35329e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 5.99755e-15, res_now = 3.13379e-18, res_old = 3.42646e-14
+Solution rank [ 1 21 13 13 2 1 ]
+Maxres 0.00684047
+Time 3892.25 ms
+
+Starting sweep 6
+	Core 0
+		Choosing direct solver (local size 8400)...
+		dx = 3.82824e-06, res_now = 1.00361e-13, res_old = 0.00031678
+	Core 1
+		Choosing direct solver (local size 5200)...
+		dx = 1.89033e-06, res_now = 7.12069e-14, res_old = 0.000132171
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 1.17318e-14, res_now = 5.57922e-15, res_old = 6.3861e-14
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 4.15126e-15, res_now = 1.51101e-14, res_old = 1.66994e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 2.44346e-15, res_now = 1.64889e-16, res_old = 2.11497e-14
+Solution rank [ 1 25 13 13 2 1 ]
+Maxres 0.00031678
+Time 6514.1 ms
+
+Starting sweep 7
+	Core 0
+		Choosing direct solver (local size 10000)...
+		dx = 8.74868e-07, res_now = 1.14826e-13, res_old = 7.3104e-05
+	Core 1
+		Choosing direct solver (local size 6032)...
+		dx = 3.72656e-07, res_now = 5.76938e-14, res_old = 1.84867e-05
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 4.58981e-15, res_now = 4.42166e-15, res_old = 1.18562e-13
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 4.33596e-15, res_now = 2.46766e-14, res_old = 9.9926e-15
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 5.00094e-15, res_now = 2.73515e-15, res_old = 3.31129e-14
+Solution rank [ 1 29 13 13 2 1 ]
+Maxres 7.3104e-05
+Time 10180.3 ms
+
+Starting sweep 8
+	Core 0
+		Choosing direct solver (local size 11600)...
+		dx = 2.05394e-07, res_now = 1.20424e-13, res_old = 1.66434e-05
+	Core 1
+		Choosing direct solver (local size 6864)...
+		dx = 5.00495e-08, res_now = 1.044e-13, res_old = 6.35633e-06
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 1.26999e-14, res_now = 3.65373e-15, res_old = 1.04933e-13
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 1.8018e-15, res_now = 6.73727e-16, res_old = 6.075e-15
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 3.77476e-15, res_now = 1.3109e-15, res_old = 3.98638e-15
+Solution rank [ 1 33 13 13 2 1 ]
+Maxres 1.66434e-05
+Time 15250.8 ms
+
+Starting sweep 9
+	Core 0
+		Choosing direct solver (local size 13200)...
+		dx = 3.39773e-08, res_now = 1.1942e-13, res_old = 4.48767e-06
+	Core 1
+		Choosing direct solver (local size 7696)...
+		dx = 1.16482e-08, res_now = 5.07726e-14, res_old = 9.41755e-07
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 7.59568e-14, res_now = 3.59508e-15, res_old = 5.82063e-14
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 6.06878e-15, res_now = 9.07202e-16, res_old = 1.56622e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 5.55511e-16, res_now = 0, res_old = 3.63746e-15
+Solution rank [ 1 37 13 13 2 1 ]
+Maxres 4.48767e-06
+Time 21681.7 ms
+
+Starting sweep 10
+	Core 0
+		Choosing direct solver (local size 14800)...
+		dx = 4.31472e-09, res_now = 1.47625e-13, res_old = 2.76305e-07
+	Core 1
+		Choosing direct solver (local size 8528)...
+		dx = 9.95845e-10, res_now = 1.48015e-13, res_old = 8.83848e-08
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 4.8761e-14, res_now = 2.26003e-14, res_old = 1.53972e-13
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 6.14409e-15, res_now = 1.69388e-14, res_old = 4.29694e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 1.12264e-15, res_now = 1.02622e-14, res_old = 2.34471e-14
+Solution rank [ 1 41 13 13 2 1 ]
+Maxres 2.76305e-07
+Time 29953.5 ms
+
+Starting sweep 11
+	Core 0
+		Choosing iterative solver (local size 16400)...
+		Finished with flag 1 after 3 iterations with relres 2.21094e-08 (from 0.583854)
+		Time needed 26.531 ms
+		dx = 1.65431e-10, res_now = 2.21094e-08, res_old = 3.82984e-08
+	Core 1
+		Choosing direct solver (local size 8944)...
+		dx = 3.822e-10, res_now = 7.57685e-14, res_old = 4.1753e-08
+	Core 2
+		Choosing direct solver (local size 390)...
+		dx = 6.85114e-14, res_now = 3.01188e-15, res_old = 5.76422e-14
+	Core 3
+		Choosing direct solver (local size 130)...
+		dx = 4.99325e-15, res_now = 9.9851e-16, res_old = 2.95916e-14
+	Core 4
+		Choosing direct solver (local size 2)...
+		dx = 8.88179e-16, res_now = 0, res_old = 8.35507e-16
+Solution rank [ 1 43 13 13 2 1 ]
+Maxres 4.1753e-08
+Time 6124.5 ms
+
+Starting sweep 12 (last one)
+	Core 0
+		Choosing iterative solver (local size 17200)...
+		Finished with flag 1 after 3 iterations with relres 1.8686e-08 (from 0.644716)
+		Time needed 29.729 ms
+		dx = 1.2536e-10, res_now = 1.8686e-08, res_old = 3.4683e-08
+	Core 1
+		Choosing direct solver (local size 8112)...
+		dx = 1.82421e-10, res_now = 2.27317e-13, res_old = 1.19805e-08
+	Core 2
+		Choosing direct solver (local size 270)...
+		dx = 1.43773e-14, res_now = 3.01975e-15, res_old = 5.16126e-14
+	Core 3
+		Choosing direct solver (local size 90)...
+		dx = 7.88649e-15, res_now = 9.24029e-16, res_old = 5.74425e-15
+	Core 4
+		Choosing direct solver (local size 1)...
+		dx = 8.43769e-15, res_now = 0, res_old = 8.37692e-15
+Solution rank [ 1 39 9 9 1 1 ]
+Maxres 3.4683e-08
+Time 4700.57 ms
+
+Finished after 12 sweeps and 101.031 seconds
+
+AMEn solver completed in 101.03 seconds.
+Psi is a
+TT with sizes and ranks:
+N = [600, 16, 3, 10, 1]
+R = [1, 33, 9, 9, 1, 1]
+
+Device: cpu, dtype: torch.float64
+#entries 24886 compression 0.08640972222222222
+
+
+AMEn: nswp=40, eps=1e-07, kickrank=4, max_full=15000, round_eps=1e-8 (SlabTransport.run_amen defaults); torchtt amen_solve defaults: local solver GMRES (local_iterations=40, resets=2, no preconditioner), x0 = ones, trunc_norm='res', C++ backend
+operator A: mode sizes [400, 16, 3, 10, 1] x [400, 16, 3, 10, 1]  (z-dof, mu, phi, g, t)
+  ranks R = [1, 5, 5, 5, 5, 1]
+  TT entries = 809130,  dense = 192000^2 = 3.686e+10  ->  compression 2.19e-05
+solution psi_modal: mode sizes N = [400, 16, 3, 10, 1]  (z-dof = N_z (p+1), mu, phi, g, t)
+  ranks R = [1, 33, 9, 9, 1, 1]
+  core shapes = (1, 400, 33), (33, 16, 9), (9, 3, 9), (9, 10, 1), (1, 1, 1)
+  TT entries = 18286,  full tensor = 192000  ->  compression 9.52e-02  (143 KiB vs 1.5 MiB in float64)
+true relative residual ||A psi - F|| / ||F|| = 6.04e-07  (psi rounded at 1e-8)
+max |psi - <psi>_phi| / max|psi| = 6.52e-16
+
+TT: N_z=200, p=1, N_mu=16, N_phi=3, az_sym=False, L_max=0, ranks=[1, 33, 9, 9, 1, 1]
+g | int TT/MG-1 | int TT/CE-1 | TT/MG-1 at z = 0.1, 5.0, 10.0, 15.1, 20.0, 25.0, 29.9 | median|z| | frac|z|>3
+0 | +0.0000     | -0.0085     | -0.000 -0.000 -0.000 +0.001 +0.001 +0.001 +0.000 | 0.6 | 0.01
+1 | -0.0008     | +0.0233     | -0.014 -0.001 -0.001 -0.000 -0.001 -0.001 -0.008 | 1.1 | 0.11
+2 | -0.0006     | -0.0132     | -0.011 +0.000 -0.001 -0.001 -0.000 +0.000 -0.008 | 0.7 | 0.03
+3 | -0.0011     | -0.0239     | -0.010 +0.000 -0.001 -0.001 +0.000 -0.001 -0.009 | 0.9 | 0.04
+4 | -0.0013     | -0.0281     | -0.012 -0.001 -0.002 -0.000 -0.000 -0.002 -0.009 | 1.0 | 0.03
+5 | -0.0012     | -0.0285     | -0.010 -0.001 -0.001 -0.001 -0.001 -0.002 -0.010 | 0.8 | 0.03
+6 | +0.0003     | -0.0260     | -0.012 -0.000 -0.001 +0.003 +0.001 -0.002 -0.012 | 0.8 | 0.03
+7 | -0.0006     | -0.0210     | -0.009 -0.001 +0.001 -0.000 -0.001 +0.001 -0.011 | 0.5 | 0.02
+8 | +0.0075     | +0.0936     | +0.007 -0.008 +0.021 -0.001 +0.023 +0.016 -0.037 | 0.6 | 0.00
+/home/ale234/openmc/graphite/tt_graphite_slab.py:166: RuntimeWarning: invalid value encountered in scalar divide
+  print(f"{g} | {phi_tt[:, g].sum() / a[:, g].sum() - 1:+.4f}     | {phi_tt[:, g].sum() / c[:, g].sum() - 1:+.4f}     | "
+/home/ale234/openmc/graphite/tt_graphite_slab.py:168: RuntimeWarning: All-NaN slice encountered
+  + f" | {np.nanmedian(np.abs(zsc[:, g])):.1f} | {np.nanmean(np.abs(zsc[:, g]) > 3):.2f}")
+9 | +nan     | +nan     | +nan +nan +nan +nan +nan +nan +nan | nan | 0.00
