@@ -1,0 +1,13 @@
+A: ranks [1, 3, 5, 7, 7, 1, 1, 1], mode sizes [400, 400, 400, 64, 64, 1, 1], built in 3.4 s
+||A - A_1||_F / ||A||_F = 6.921e-01
+  core x  :  400 x  400, cond = 4.339e+00
+  core y  :  400 x  400, cond = 4.339e+00
+  core z  :  400 x  400, cond = 5.732e+00
+  core mu :   64 x   64, cond = 1.424e+00
+  core phi:   64 x   64, cond = 1.137e+00
+  core g  :    1 x    1, cond = 1.000e+00
+  core t  :    1 x    1, cond = 1.000e+00
+A B: ranks [1, 3, 5, 7, 7, 1, 1, 1] (0.5 s)
+||A_1 B - I||_F / ||I||_F = 9.474e-16   (check: B = A_1^-1)
+||A B - I||_F / ||I||_F   = 2.412e+00
+||A B||_F / ||I||_F       = 2.598e+00

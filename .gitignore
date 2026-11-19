@@ -20,18 +20,24 @@ venv/
 *.nav
 *.snm
 *.vrb
-/box/docs/**/*.log
-/slab/docs/**/*.log
+/box_3d_spatial_domain/docs/**/*.log
+/slab_1d_spatial_domain/docs/**/*.log
 
-# slab notes are kept out of the repository
-/slab/notes/
+# kept out of the repository: slab notes, scratch tests and the integral-form work
+/slab_1d_spatial_domain/notes/
+tests/
+/integral_form/
 
 # local backups
 *.bak_*
 
-# large solution tensors (regenerable with the study scripts)
-/box/studies/infinite_medium/phi_tt_c0.5.pt
-/box/studies/infinite_medium/phi_tt_c0.5_cont.pt
+# large data: solution tensors, dense fields and movies (regenerable with the study scripts);
+# small reference data (MC fluxes, multigroup cross sections) stays tracked
+*.pt
+*.mp4
+*.gif
+/box_3d_spatial_domain/studies/beam/**/*.npz
+!/box_3d_spatial_domain/studies/beam/**/*mgxs*.npz
 
 # Editors / OS
 .vscode/

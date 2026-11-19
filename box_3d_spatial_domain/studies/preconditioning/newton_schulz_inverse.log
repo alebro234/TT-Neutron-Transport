@@ -1,0 +1,24 @@
+A is a
+TT-matrix with sizes and ranks:
+M = [128, 128, 128, 16, 16, 4, 128]
+N = [128, 128, 128, 16, 16, 4, 128]
+R = [1, 3, 5, 7, 7, 3, 2, 1]
+Device: cpu, dtype: torch.float64
+#entries 919136 compression 1.2164663671992634e-17
+
+A: ranks [1, 3, 5, 7, 7, 3, 2, 1], mode sizes [128, 128, 128, 16, 16, 4, 128], built in 0.2 s
+EPS = 1e-06, RMAX = 20, K_ITER = 10
+||A - A_1||_F / ||A||_F = 1.369e-01
+  core x  :  128 x  128, cond = 3.091e+00
+  core y  :  128 x  128, cond = 3.091e+00
+  core z  :  128 x  128, cond = 3.139e+00
+  core mu :   16 x   16, cond = 1.019e+00
+  core phi:   16 x   16, cond = 1.012e+00
+  core g  :    4 x    4, cond = 6.855e+00
+  core t  :  128 x  128, cond = 1.292e+01
+||A_1 X_0 - I||_F / ||I||_F = 7.424e-16  (check)
+power iteration on I - A X_0 (30 its, 0.8 s): ||E^k v|| / ||E^(k-1) v|| last 5 = ['10.3371', '10.0297', '9.7267', '9.4290', '9.1396']  -> rho ~ 9.1396  (>= 1: Newton-Schulz diverges)
+
+ k   ||AX - I||/||I||  max rank X   time [s]
+ 0          1.514e+00           1        0.0
+ 1          1.018e+01           8      100.1   ranks X [1, 3, 6, 8, 8, 4, 2, 1]
